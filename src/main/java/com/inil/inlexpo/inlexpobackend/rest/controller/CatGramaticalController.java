@@ -25,7 +25,7 @@ public class CatGramaticalController {
   private ModelMapper modelMapper;
 
 
-  @GetMapping("/catGrm")
+  /*@GetMapping("/catGrm")
   public List<InfGramaticalDto> findAll () {
     return  catGrmSrv.findAll().stream()
             .map(c -> convertToDto(c))
@@ -67,19 +67,17 @@ public class CatGramaticalController {
     }
   }
 
-  @GetMapping("/catGrm/{id}/subGrm")
+  @GetMapping("/catGramatical/{id}/subGrm")
   public CatGramatical findByIdWithSubGrm (@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
     try {
-      return catGrmSrv.findById(id);
+      return catGrmSrv.buscarPorId(id);
     } catch (ResourceNotFoundException ex) {
       throw ex;
     }
-  }
+  }*/
 
-  private InfGramaticalDto convertToDto(CatGramatical c) {
-    return modelMapper.map(c, InfGramaticalDto.class);
-  }
-  private CatGramatical convertToEntity(InfGramaticalDto c) {
-    return modelMapper.map(c, CatGramatical.class);
+  @GetMapping("/catGramatical/subGramatical")
+  public List<CatGramatical> buscarTodosConSubcategoriasAsociadas () {
+    return  catGrmSrv.buscarTodos();
   }
 }

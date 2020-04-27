@@ -68,15 +68,16 @@ public class SubGramatical {
   }
 
 
-  public SubGrmDiccionario addDiccionario(Diccionario diccionario, String abreviatura) {
-    SubGrmDiccionario subGrmDic = new SubGrmDiccionario(diccionario, this, abreviatura);
+  public SubGrmDiccionario addDiccionario(Diccionario diccionario, CatGramatical catGramatical, String abreviatura) {
+    SubGrmDiccionario subGrmDic = new SubGrmDiccionario(diccionario, catGramatical, this, abreviatura);
     listaSubGrmDic.add(subGrmDic);
     diccionario.getListaSubGrmDic().add(subGrmDic);
     return subGrmDic;
   }
-  public void removeDiccionario(SubGrmDiccionario subGrmDic, Diccionario diccionario) {
+  public void removeDiccionario(SubGrmDiccionario subGrmDic, Diccionario diccionario, CatGramatical catGramatical) {
     listaSubGrmDic.remove(subGrmDic);
     diccionario.getListaSubGrmDic().remove(subGrmDic);
+    catGramatical.getListaSubGrmDic().remove(subGrmDic);
     // Vamos a dejarlo asi a ver si hace falta lo de los nulos
   }
 }

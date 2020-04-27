@@ -28,6 +28,8 @@ public class CatGramatical {
   @OneToMany(mappedBy = "catGramatical", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonManagedReference
   private List<SubGramatical> listaSubGramatical = new ArrayList<>();
+  @OneToMany(mappedBy = "catGramatical", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<SubGrmDiccionario> listaSubGrmDic = new ArrayList<>();
 
 
   public CatGramatical() {}
@@ -84,5 +86,12 @@ public class CatGramatical {
   public void removeSubGrm(SubGramatical subGramatical) {
     listaSubGramatical.remove(subGramatical);
     subGramatical.setCatGramatical(null);
+  }
+
+  public List<SubGrmDiccionario> getListaSubGrmDic() {
+    return listaSubGrmDic;
+  }
+  public void setListaSubGrmDic(List<SubGrmDiccionario> listaSubGrmDic) {
+    this.listaSubGrmDic = listaSubGrmDic;
   }
 }

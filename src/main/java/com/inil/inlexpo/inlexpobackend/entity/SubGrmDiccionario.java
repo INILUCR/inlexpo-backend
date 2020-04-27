@@ -20,16 +20,19 @@ public class SubGrmDiccionario {
   @JoinColumn(name = "id_diccionario", insertable = false, updatable = false)
   private Diccionario diccionario;
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "id_categoria_gramatical", insertable = false, updatable = false)
+  private CatGramatical catGramatical;
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_subcategoria_gramatical", insertable = false, updatable = false)
   private SubGramatical subGramatical;
 
 
   public SubGrmDiccionario() {}
-  public SubGrmDiccionario(Diccionario diccionario, SubGramatical subGramatical, String abreviatura) {
+  public SubGrmDiccionario(Diccionario diccionario, CatGramatical catGramatical, SubGramatical subGramatical, String abreviatura) {
     this.diccionario = diccionario;
     this.subGramatical = subGramatical;
     this.abreviatura = abreviatura;
-    this.id = new SubGrmDicId(diccionario.getId(), subGramatical.getId());
+    this.id = new SubGrmDicId(diccionario.getId(), catGramatical.getId(), subGramatical.getId());
   }
 
 
@@ -47,6 +50,12 @@ public class SubGrmDiccionario {
     this.subGramatical = subGramatical;
   }
 
+  public CatGramatical getCatGramatical() {
+    return catGramatical;
+  }
+  public void setCatGramatical(CatGramatical catGramatical) {
+    this.catGramatical = catGramatical;
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -57,6 +66,7 @@ public class SubGrmDiccionario {
       if (o != null || (getClass() == o.getClass())) {
         SubGrmDiccionario other = (SubGrmDiccionario) o;
         isEquals = diccionario != null && Objects.equals(diccionario, other.diccionario) &&
+                catGramatical != null && Objects.equals(catGramatical, other.catGramatical) &&
                 subGramatical != null && Objects.equals(subGramatical, other.subGramatical);
       }
     }
@@ -65,6 +75,6 @@ public class SubGrmDiccionario {
 
   @Override
   public int hashCode() {
-    return Objects.hash(diccionario, subGramatical);
+    return Objects.hash(diccionario, catGramatical, subGramatical);
   }
 }

@@ -15,15 +15,15 @@ public class SubGramaticalService {
   private SubGramaticalRepository subGrmRep;
 
 
-  public List<SubGramatical> findAll() {
+  /*public List<SubGramatical> findAll() {
     return subGrmRep.findAll();
-  }
+  }*/
 
-  public SubGramatical findById(Long id) throws ResourceNotFoundException {
+  public SubGramatical buscarPorId(Long id) throws ResourceNotFoundException {
     return subGrmRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Subcategoria Gramatical: " + id));
   }
 
-  public SubGramatical create(SubGramatical s) {
+  /*public SubGramatical create(SubGramatical s) {
     return subGrmRep.save(s);
   }
 
@@ -40,5 +40,5 @@ public class SubGramaticalService {
     SubGramatical s = subGrmRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Subcategoria Gramatical: " + id));
     subGrmRep.delete(s);
     return true;
-  }
+  }*/
 }

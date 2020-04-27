@@ -1,6 +1,6 @@
 package com.inil.inlexpo.inlexpobackend.dto;
 
-public class DiccionarioDto {
+public class DiccionarioNuevo {
 
   private Long id;
   private String nombre;
@@ -8,8 +8,8 @@ public class DiccionarioDto {
   private String tipo;
 
 
-  public DiccionarioDto() {}
-  public DiccionarioDto(Long id, String nombre, String descripcion, String tipo) {
+  public DiccionarioNuevo() {}
+  public DiccionarioNuevo(Long id, String nombre, String descripcion, String tipo) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;

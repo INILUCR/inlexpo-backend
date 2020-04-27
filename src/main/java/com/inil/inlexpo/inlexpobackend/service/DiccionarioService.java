@@ -14,19 +14,19 @@ public class DiccionarioService {
   @Autowired
   private DiccionarioRepository diccionarioRep;
 
-  public List<Diccionario> findAll() {
+  public List<Diccionario> buscarTodos() {
     return diccionarioRep.findAll();
   }
 
-  public Diccionario findById (Long id) throws ResourceNotFoundException {
+  public Diccionario buscarPorId (Long id) throws ResourceNotFoundException {
     return diccionarioRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Diccionario: " + id));
   }
 
-  public Diccionario create (Diccionario d) {
+  public Diccionario crear (Diccionario d) {
     return diccionarioRep.save(d);
   }
 
-  public Diccionario update (Long id, Diccionario d) throws ResourceNotFoundException {
+  /*public Diccionario update (Long id, Diccionario d) throws ResourceNotFoundException {
     Diccionario dActual = diccionarioRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Diccionario: " + id));
     dActual.setNombre(d.getNombre());
     dActual.setDescripcion(d.getDescripcion());
@@ -40,5 +40,5 @@ public class DiccionarioService {
     Diccionario d = diccionarioRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Diccionario: " + id));
     diccionarioRep.delete(d);
     return true;
-  }
+  }*/
 }

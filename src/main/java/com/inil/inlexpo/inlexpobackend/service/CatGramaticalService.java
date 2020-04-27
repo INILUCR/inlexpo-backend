@@ -15,15 +15,15 @@ public class CatGramaticalService {
   private CatGramaticalRepository catGrmRep;
 
 
-  public List<CatGramatical> findAll() {
+  public List<CatGramatical> buscarTodos() {
     return catGrmRep.findAll();
   }
 
-  public CatGramatical findById(Long id) throws ResourceNotFoundException {
+  public CatGramatical buscarPorId(Long id) throws ResourceNotFoundException {
     return catGrmRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Categoria Gramatical: " + id));
   }
 
-  public CatGramatical create(CatGramatical c) {
+  /*public CatGramatical create(CatGramatical c) {
     return catGrmRep.save(c);
   }
 
@@ -40,5 +40,5 @@ public class CatGramaticalService {
     CatGramatical c = catGrmRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Categoria Gramatical: " + id));
     catGrmRep.delete(c);
     return true;
-  }
+  }*/
 }

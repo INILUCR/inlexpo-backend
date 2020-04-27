@@ -12,6 +12,10 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+@RequestMapping("/inlexpo")
+
 public class SubGramaticalController {
 
   @Autowired
@@ -20,7 +24,7 @@ public class SubGramaticalController {
   private ModelMapper modelMapper;
 
 
-  @GetMapping("/subGrm")
+  /*@GetMapping("/subGrm")
   public List<InfGramaticalDto> findAll () {
     return  subGrmSrv.findAll().stream()
             .map(s -> convertToDto(s))
@@ -60,12 +64,5 @@ public class SubGramaticalController {
     } catch (ResourceNotFoundException ex) {
       throw ex;
     }
-  }
-
-  private InfGramaticalDto convertToDto(SubGramatical s) {
-    return modelMapper.map(s, InfGramaticalDto.class);
-  }
-  private SubGramatical convertToEntity(InfGramaticalDto s) {
-    return modelMapper.map(s, SubGramatical.class);
-  }
+  }*/
 }
