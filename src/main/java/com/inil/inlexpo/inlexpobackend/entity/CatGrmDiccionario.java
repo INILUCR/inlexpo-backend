@@ -4,33 +4,34 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "CatGrmDiccionario")
 @Table(name = "diccionario_categoria_gramatical")
 public class CatGrmDiccionario {
 
   @EmbeddedId
   private CatGrmDicId id;
 
-  @NotNull
-  @Column(name = "abreviatura")
+  @Column(name = "abreviatura", nullable = false)
   private String abreviatura;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_diccionario", insertable = false, updatable = false)
+  @MapsId("diccionarioId")
   private Diccionario diccionario;
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_categoria_gramatical", insertable = false, updatable = false)
+  @MapsId("catGramaticalId")
   private CatGramatical catGramatical;
 
 
   public CatGrmDiccionario() {}
-  public CatGrmDiccionario(Diccionario diccionario, CatGramatical catGramatical, String abreviatura) {
+  public CatGrmDiccionario(@NotNull Diccionario diccionario, @NotNull CatGramatical catGramatical, @NotNull String abreviatura) {
     this.diccionario = diccionario;
     this.catGramatical = catGramatical;
-    this.abreviatura = abreviatura;
     this.id = new CatGrmDicId(diccionario.getId(), catGramatical.getId());
+
+    this.abreviatura = abreviatura;
   }
 
+  /**********************************************************************************************************/
 
   public Diccionario getDiccionario() {
     return diccionario;
@@ -46,20 +47,18 @@ public class CatGrmDiccionario {
     this.catGramatical = catGramatical;
   }
 
+  /**********************************************************************************************************/
 
   @Override
   public boolean equals(Object o) {
-    boolean isEquals = false;
-    if (this == o) {
-      isEquals =  true;
-    } else {
-      if (o != null || (getClass() == o.getClass())) {
-        CatGrmDiccionario other = (CatGrmDiccionario) o;
-        isEquals = diccionario != null && Objects.equals(diccionario, other.diccionario) &&
-                catGramatical != null && Objects.equals(catGramatical, other.catGramatical);
-      }
-    }
-    return isEquals;
+    if (this == o) return true;
+
+    if (o == null || getClass() != o.getClass())
+      return false;
+
+    CatGrmDiccionario that = (CatGrmDiccionario) o;
+    return Objects.equals(diccionario, that.diccionario) &&
+      Objects.equals(catGramatical, that.catGramatical);
   }
 
   @Override

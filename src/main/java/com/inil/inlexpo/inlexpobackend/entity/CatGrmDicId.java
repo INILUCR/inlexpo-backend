@@ -8,9 +8,9 @@ import java.util.Objects;
 @Embeddable
 public class CatGrmDicId implements Serializable {
 
-  @Column(name = "id_diccionario")
+  @Column(name = "diccionario_id")
   private Long diccionarioId;
-  @Column(name = "id_categoria_gramatical")
+  @Column(name = "categoria_gramatical_id")
   private Long catGramaticalId;
 
 
@@ -20,6 +20,7 @@ public class CatGrmDicId implements Serializable {
     this.catGramaticalId = catGramaticalId;
   }
 
+  /**********************************************************************************************************/
 
   public Long getDiccionarioId() {
     return diccionarioId;
@@ -35,20 +36,18 @@ public class CatGrmDicId implements Serializable {
     this.catGramaticalId = catGramaticalId;
   }
 
+  /**********************************************************************************************************/
 
   @Override
   public boolean equals(Object o) {
-    boolean isEquals = false;
-    if (this == o) {
-      isEquals = true;
-    } else {
-      if (o != null || (getClass() == o.getClass())) {
-        CatGrmDicId other = (CatGrmDicId) o;
-        isEquals = Objects.equals(this.diccionarioId, other.diccionarioId) &&
-                Objects.equals(this.catGramaticalId, other.catGramaticalId);
-      }
-    }
-    return isEquals;
+    if (this == o) return true;
+
+    if (o == null || getClass() != o.getClass())
+      return false;
+
+    CatGrmDicId that = (CatGrmDicId) o;
+    return Objects.equals(diccionarioId, that.diccionarioId) &&
+      Objects.equals(catGramaticalId, that.catGramaticalId);
   }
 
   @Override

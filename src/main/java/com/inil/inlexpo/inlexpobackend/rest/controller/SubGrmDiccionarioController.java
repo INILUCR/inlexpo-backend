@@ -1,12 +1,10 @@
 package com.inil.inlexpo.inlexpobackend.rest.controller;
 
 import com.inil.inlexpo.inlexpobackend.dto.SubGrmDiccionarioNuevo;
-import com.inil.inlexpo.inlexpobackend.entity.CatGramatical;
 import com.inil.inlexpo.inlexpobackend.entity.Diccionario;
 import com.inil.inlexpo.inlexpobackend.entity.SubGramatical;
 import com.inil.inlexpo.inlexpobackend.entity.SubGrmDiccionario;
 import com.inil.inlexpo.inlexpobackend.exception.ResourceNotFoundException;
-import com.inil.inlexpo.inlexpobackend.service.CatGramaticalService;
 import com.inil.inlexpo.inlexpobackend.service.DiccionarioService;
 import com.inil.inlexpo.inlexpobackend.service.SubGramaticalService;
 import com.inil.inlexpo.inlexpobackend.service.SubGrmDiccionarioService;
@@ -27,8 +25,6 @@ public class SubGrmDiccionarioController {
   @Autowired
   private SubGramaticalService subGramaticalService;
   @Autowired
-  private CatGramaticalService catGramaticalService;
-  @Autowired
   private DiccionarioService diccionarioService;
 
 
@@ -39,10 +35,9 @@ public class SubGrmDiccionarioController {
       if (listaSubGrmDicNuevo.size() > 0) {
         Diccionario diccionario = diccionarioService.buscarPorId(listaSubGrmDicNuevo.get(0).getDiccionarioId());
         for (SubGrmDiccionarioNuevo subGrmDiccionarioNuevo: listaSubGrmDicNuevo) {
-          CatGramatical catGramatical = catGramaticalService.buscarPorId(subGrmDiccionarioNuevo.getCatGramaticalId());
           SubGramatical subGramatical = subGramaticalService.buscarPorId(subGrmDiccionarioNuevo.getSubGramaticalId());
 
-          SubGrmDiccionario subGrmDiccionario = new SubGrmDiccionario(diccionario, catGramatical, subGramatical,
+          SubGrmDiccionario subGrmDiccionario = new SubGrmDiccionario(diccionario, subGramatical,
                   subGrmDiccionarioNuevo.getAbreviatura());
           subGrmDiccionarioService.crear(subGrmDiccionario);
         }

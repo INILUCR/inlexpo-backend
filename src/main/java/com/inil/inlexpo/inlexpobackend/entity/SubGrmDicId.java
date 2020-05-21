@@ -8,34 +8,25 @@ import java.util.Objects;
 @Embeddable
 public class SubGrmDicId implements Serializable {
 
-  @Column(name = "id_diccionario")
+  @Column(name = "diccionario_id")
   private Long diccionarioId;
-  @Column(name = "id_categoria_gramatical")
-  private Long catGramaticalId;
-  @Column(name = "id_subcategoria_gramatical")
+  @Column(name = "subcategoria_gramatical_id")
   private Long subGramaticalId;
 
 
   public SubGrmDicId() {}
-  public SubGrmDicId(Long diccionarioId, Long catGramaticalId, Long subGramaticalId) {
+  public SubGrmDicId(Long diccionarioId, Long subGramaticalId) {
     this.diccionarioId = diccionarioId;
-    this.catGramaticalId = catGramaticalId;
     this.subGramaticalId = subGramaticalId;
   }
 
+  /**********************************************************************************************************/
 
   public Long getDiccionarioId() {
     return diccionarioId;
   }
   public void setDiccionarioId(Long diccionarioId) {
     this.diccionarioId = diccionarioId;
-  }
-
-  public Long getCatGramaticalId() {
-    return catGramaticalId;
-  }
-  public void setCatGramaticalId(Long catGramaticalId) {
-    this.catGramaticalId = catGramaticalId;
   }
 
   public Long getSubGramaticalId() {
@@ -45,25 +36,22 @@ public class SubGrmDicId implements Serializable {
     this.subGramaticalId = subGramaticalId;
   }
 
+  /**********************************************************************************************************/
 
   @Override
   public boolean equals(Object o) {
-    boolean isEquals = false;
-    if (this == o) {
-      isEquals = true;
-    } else {
-      if (o != null || (getClass() == o.getClass())) {
-        SubGrmDicId other = (SubGrmDicId) o;
-        isEquals = Objects.equals(this.diccionarioId, other.diccionarioId) &&
-                Objects.equals(this.catGramaticalId, other.catGramaticalId) &&
-                Objects.equals(this.subGramaticalId, other.subGramaticalId);
-      }
-    }
-    return isEquals;
+    if (this == o) return true;
+
+    if (o == null || getClass() != o.getClass())
+      return false;
+
+    SubGrmDicId that = (SubGrmDicId) o;
+    return Objects.equals(diccionarioId, that.diccionarioId) &&
+      Objects.equals(subGramaticalId, that.subGramaticalId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(diccionarioId, catGramaticalId, subGramaticalId);
+    return Objects.hash(diccionarioId, subGramaticalId);
   }
 }

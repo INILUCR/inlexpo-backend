@@ -1,34 +1,34 @@
 package com.inil.inlexpo.inlexpobackend.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.NaturalIdCache;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
-@Entity
+@Entity(name = "SubGramatical")
 @Table(name = "subcategoria_gramatical")
+@NaturalIdCache
+@Cache(
+    usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE
+)
 public class SubGramatical {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_subcategoria_gramatical")
+  @Column(name = "subcategoria_gramatical_id")
   private Long id;
 
-  @NotNull
-  @Column(name = "nombre", nullable = false)
+  @NaturalId
+  @Column(name="nombre", nullable = false, unique = true)
   private String nombre;
-  @NotNull
-  @Column(name = "descripcion", nullable = false, length = 1000)
+  @Column(name="descripcion", nullable = false, length = 1000)
   private String descripcion;
 
-  @OneToMany(mappedBy = "subGramatical", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<SubGrmDiccionario> listaSubGrmDic = new ArrayList<>();
-
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "id_categoria_gramatical")
-  @JsonBackReference
   private CatGramatical catGramatical;
 
 
@@ -38,6 +38,7 @@ public class SubGramatical {
     this.descripcion = descripcion;
   }
 
+  /**********************************************************************************************************/
 
   public Long getId() {
     return id;
@@ -67,17 +68,18 @@ public class SubGramatical {
     this.catGramatical = catGramatical;
   }
 
+  /**********************************************************************************************************/
 
-  public SubGrmDiccionario addDiccionario(Diccionario diccionario, CatGramatical catGramatical, String abreviatura) {
-    SubGrmDiccionario subGrmDic = new SubGrmDiccionario(diccionario, catGramatical, this, abreviatura);
-    listaSubGrmDic.add(subGrmDic);
-    diccionario.getListaSubGrmDic().add(subGrmDic);
-    return subGrmDic;
+  @Override
+  public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      SubGramatical that = (SubGramatical) o;
+      return Objects.equals(nombre, that.nombre);
   }
-  public void removeDiccionario(SubGrmDiccionario subGrmDic, Diccionario diccionario, CatGramatical catGramatical) {
-    listaSubGrmDic.remove(subGrmDic);
-    diccionario.getListaSubGrmDic().remove(subGrmDic);
-    catGramatical.getListaSubGrmDic().remove(subGrmDic);
-    // Vamos a dejarlo asi a ver si hace falta lo de los nulos
+
+  @Override
+  public int hashCode() {
+      return Objects.hash(nombre);
   }
 }

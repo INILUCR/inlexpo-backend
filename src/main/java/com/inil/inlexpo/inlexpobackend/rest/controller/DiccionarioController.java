@@ -2,6 +2,7 @@ package com.inil.inlexpo.inlexpobackend.rest.controller;
 
 import com.inil.inlexpo.inlexpobackend.dto.DiccionarioNuevo;
 import com.inil.inlexpo.inlexpobackend.entity.Diccionario;
+import com.inil.inlexpo.inlexpobackend.exception.ResourceNotFoundException;
 import com.inil.inlexpo.inlexpobackend.service.DiccionarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,14 @@ public class DiccionarioController {
             .collect(Collectors.toList());
   }
 
-  /*@GetMapping("/diccionarios/{id}")
-  public DiccionarioNuevo findById (@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+  @GetMapping("/diccionario/{id}")
+  public DiccionarioNuevo buscarPorId (@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
     try {
-      return convertToDto(diccionarioSrv.findById(id));
+      return convertToDto(diccionarioSrv.buscarPorId(id));
     } catch (ResourceNotFoundException ex) {
       throw ex;
     }
-  }*/
+  }
 
   @PostMapping("/diccionario")
   public DiccionarioNuevo crear (@Valid @RequestBody DiccionarioNuevo diccionarioNuevo) {
