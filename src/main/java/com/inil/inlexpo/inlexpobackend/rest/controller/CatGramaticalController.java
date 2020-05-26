@@ -24,6 +24,6 @@ public class CatGramaticalController {
 
   @GetMapping("/catGrm/subGrm")
   public List<CatGramatical> buscarTodosConSubGrmAsociadas () {
-    return  catGrmSrv.buscarTodos();
+    return  catGrmSrv.buscarTodosConSubGrmAsociadas();
   }
 }

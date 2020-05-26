@@ -14,7 +14,7 @@ INSERT INTO categoria_gramatical (nombre, descripcion) VALUES
 ('Preposición','Es la clase de palabra invariable que introduce el llamado sintagma preposicional. Las preposiciones generalmente tienen la función de introducir adjuntos, y en ocasiones también complementos obligatorios ligando el nombre o sintagma nominal al que preceden inmediatamente con un verbo u otro nombre que las antecede.'),
 ('Conjunción','Es una palabra o conjunto de ellas que enlaza proposiciones, sintagmas o palabras. Constituye una de las clases de nexos.');
 
-INSERT INTO subcategoria_gramatical (nombre, descripcion, id_categoria_gramatical) VALUES
+INSERT INTO subcategoria_gramatical (nombre, descripcion, categoria_gramatical_id) VALUES
 ('Sustantivo1','Son palabras cuyos referentes son clases de entidades fijas (a diferencia de los pronombres cuyos referentes son contextuales), no estados de hechos o relaciones gramaticales.',1),
 ('Sustantivo2','Son palabras cuyos referentes son clases de entidades fijas (a diferencia de los pronombres cuyos referentes son contextuales), no estados de hechos o relaciones gramaticales.',1),
 ('Sustantivo3','Son palabras cuyos referentes son clases de entidades fijas (a diferencia de los pronombres cuyos referentes son contextuales), no estados de hechos o relaciones gramaticales.',1),

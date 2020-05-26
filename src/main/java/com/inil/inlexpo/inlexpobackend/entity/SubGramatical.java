@@ -7,14 +7,17 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.Objects;
 
 @Entity(name = "SubGramatical")
 @Table(name = "subcategoria_gramatical")
 @NaturalIdCache
-@Cache(
-    usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE
-)
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "nombre")
 public class SubGramatical {
 
   @Id
@@ -23,16 +26,18 @@ public class SubGramatical {
   private Long id;
 
   @NaturalId
-  @Column(name="nombre", nullable = false, unique = true)
+  @Column(name = "nombre", nullable = false, unique = true)
   private String nombre;
-  @Column(name="descripcion", nullable = false, length = 1000)
+  @Column(name = "descripcion", nullable = false, length = 1000)
   private String descripcion;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "categoria_gramatical_id")
   private CatGramatical catGramatical;
 
+  public SubGramatical() {
+  }
 
-  public SubGramatical() {}
   public SubGramatical(@NotNull String nombre, @NotNull String descripcion) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -43,6 +48,7 @@ public class SubGramatical {
   public Long getId() {
     return id;
   }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -50,6 +56,7 @@ public class SubGramatical {
   public String getNombre() {
     return nombre;
   }
+
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -57,6 +64,7 @@ public class SubGramatical {
   public String getDescripcion() {
     return descripcion;
   }
+
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
@@ -64,6 +72,7 @@ public class SubGramatical {
   public CatGramatical getCatGramatical() {
     return catGramatical;
   }
+
   public void setCatGramatical(CatGramatical catGramatical) {
     this.catGramatical = catGramatical;
   }
@@ -72,14 +81,16 @@ public class SubGramatical {
 
   @Override
   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      SubGramatical that = (SubGramatical) o;
-      return Objects.equals(nombre, that.nombre);
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    SubGramatical that = (SubGramatical) o;
+    return Objects.equals(nombre, that.nombre);
   }
 
   @Override
   public int hashCode() {
-      return Objects.hash(nombre);
+    return Objects.hash(nombre);
   }
 }

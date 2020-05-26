@@ -7,6 +7,10 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,9 +19,8 @@ import java.util.Objects;
 @Entity(name = "Diccionario")
 @Table(name = "diccionario")
 @NaturalIdCache
-@Cache(
-    usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE
-)
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "nombre")
 public class Diccionario {
 
   @Id
