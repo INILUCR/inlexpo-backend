@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/inlexpo")
@@ -22,8 +24,9 @@ public class CatGramaticalController {
     return  catGrmSrv.buscarTodos();
   }
 
-  @GetMapping("/catGrm/subGrm")
-  public List<CatGramatical> buscarTodosConSubGrmAsociadas () {
-    return  catGrmSrv.buscarTodosConSubGrmAsociadas();
+  @PostMapping("/diccionario/{diccionarioId}/catGrm")
+  public CatGramatical crear (@PathVariable(value = "diccionarioId") Long diccionarioId,
+                              @Valid @RequestBody CatGramatical catGramatical) {
+    return catGrmSrv.crear(diccionarioId, catGramatical);
   }
 }

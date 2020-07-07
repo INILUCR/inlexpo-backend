@@ -35,9 +35,7 @@ public class SubGramatical {
   @JoinColumn(name = "categoria_gramatical_id")
   private CatGramatical catGramatical;
 
-  public SubGramatical() {
-  }
-
+  public SubGramatical() {}
   public SubGramatical(@NotNull String nombre, @NotNull String descripcion) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -48,7 +46,6 @@ public class SubGramatical {
   public Long getId() {
     return id;
   }
-
   public void setId(Long id) {
     this.id = id;
   }
@@ -56,7 +53,6 @@ public class SubGramatical {
   public String getNombre() {
     return nombre;
   }
-
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -64,7 +60,6 @@ public class SubGramatical {
   public String getDescripcion() {
     return descripcion;
   }
-
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
@@ -72,7 +67,6 @@ public class SubGramatical {
   public CatGramatical getCatGramatical() {
     return catGramatical;
   }
-
   public void setCatGramatical(CatGramatical catGramatical) {
     this.catGramatical = catGramatical;
   }

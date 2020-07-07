@@ -1,7 +1,6 @@
 package com.inil.inlexpo.inlexpobackend.service;
 
 import com.inil.inlexpo.inlexpobackend.entity.Diccionario;
-import com.inil.inlexpo.inlexpobackend.exception.ResourceNotFoundException;
 import com.inil.inlexpo.inlexpobackend.repository.DiccionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,12 @@ public class DiccionarioService {
     return diccionarioRep.findAll();
   }
 
-  public Diccionario buscarPorId (Long id) throws ResourceNotFoundException {
-    return diccionarioRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Diccionario: " + id));
+  public Diccionario buscarPorId (Long id) {
+    return diccionarioRep.findById(id).orElse(null);
   }
 
-  public Diccionario crear (Diccionario d) {
-    return diccionarioRep.save(d);
+  public Diccionario crear (Diccionario diccionario) {
+    return diccionarioRep.save(diccionario);
   }
 
   /*public Diccionario update (Long id, Diccionario d) throws ResourceNotFoundException {

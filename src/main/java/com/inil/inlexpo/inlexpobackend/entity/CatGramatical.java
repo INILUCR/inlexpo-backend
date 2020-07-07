@@ -9,11 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "CatGramatical")
@@ -33,14 +30,12 @@ public class CatGramatical {
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)
   private String descripcion;
+  
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "diccionario_id")
+  private Diccionario diccionario;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  @Transient
-  private List<SubGramatical> listaSubGramatical = new ArrayList<>();
-
-  public CatGramatical() {
-  }
-
+  public CatGramatical() {}
   public CatGramatical(@NotNull String nombre, @NotNull String descripcion) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -51,7 +46,6 @@ public class CatGramatical {
   public Long getId() {
     return id;
   }
-
   public void setId(Long id) {
     this.id = id;
   }
@@ -59,7 +53,6 @@ public class CatGramatical {
   public String getNombre() {
     return nombre;
   }
-
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -67,17 +60,15 @@ public class CatGramatical {
   public String getDescripcion() {
     return descripcion;
   }
-
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
 
-  public List<SubGramatical> getListaSubGramatical() {
-    return listaSubGramatical;
+  public Diccionario getDiccionario() {
+    return diccionario;
   }
-
-  public void setListaSubGramatical(List<SubGramatical> listaSubGramatical) {
-    this.listaSubGramatical = listaSubGramatical;
+  public void setDiccionario(Diccionario diccionario) {
+    this.diccionario = diccionario;
   }
 
   /**********************************************************************************************************/
