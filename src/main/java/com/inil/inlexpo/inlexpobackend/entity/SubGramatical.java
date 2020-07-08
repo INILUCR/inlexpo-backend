@@ -30,6 +30,8 @@ public class SubGramatical {
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)
   private String descripcion;
+  @Column(name = "abreviatura", nullable = false, length = 20)
+  private String abreviatura;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "categoria_gramatical_id")
@@ -62,6 +64,13 @@ public class SubGramatical {
   }
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
+  }
+
+  public String getAbreviatura() {
+    return abreviatura;
+  }
+  public void setAbreviatura(String abreviatura) {
+    this.abreviatura = abreviatura;
   }
 
   public CatGramatical getCatGramatical() {

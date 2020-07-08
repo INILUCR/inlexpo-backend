@@ -29,15 +29,4 @@ public class ArticuloController {
     }
     return listaArticulo;
   }
-
-  @GetMapping("/articulo/diccionario/{diccionarioId}/{letra}")
-  public List<Articulo> buscarPorDiccionarioyLetra(@PathVariable(value = "diccionarioId") Long diccionarioId,
-      @PathVariable(value = "letra") char letra) throws ResourceNotFoundException {
-    List<Articulo> listaArticulo = articuloSrv.buscarPorDiccionarioyLetra(diccionarioId, letra);
-    if (listaArticulo == null) {
-      String message = DiccionarioController.DICCIONARIO_NO_ENCONTRADO + diccionarioId;
-      throw new ResourceNotFoundException(message);
-    }
-    return listaArticulo;
-  }
 }

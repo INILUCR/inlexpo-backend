@@ -5,15 +5,12 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "Articulo")
@@ -37,10 +34,6 @@ public class Articulo {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "diccionario_id")
   private Diccionario diccionario;
-
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  @Transient
-  private List<Acepcion> listaAcepcion = new ArrayList<>();
 
 
   public Articulo() {}
@@ -78,14 +71,6 @@ public class Articulo {
 
   public void setDiccionario(Diccionario diccionario) {
     this.diccionario = diccionario;
-  }
-
-  public List<Acepcion> getListaAcepcion() {
-    return listaAcepcion;
-  }
-
-  public void setListaAcepcion(List<Acepcion> listaAcepcion) {
-    this.listaAcepcion = listaAcepcion;
   }
 
   /**********************************************************************************************************/

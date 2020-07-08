@@ -24,9 +24,4 @@ public class ArticuloService {
 		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
 		return articuloRep.findByDiccionario(diccionario);
 	}
-
-	public List<Articulo> buscarPorDiccionarioyLetra(Long diccionarioId, char letra) {
-		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
-		return articuloRep.findByDiccionarioAndLemaLikeOrderByLemaAsc(diccionario, letra + "%");
-	}
 }
