@@ -1,14 +1,13 @@
 package com.inil.inlexpo.inlexpobackend.entity;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "Acepcion")
 @Table(name = "acepcion")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Acepcion {
   
   @Id
@@ -23,6 +22,7 @@ public class Acepcion {
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "articulo_id")
+  @JsonIgnore
   private Articulo articulo;
 
   public Acepcion() {}
@@ -64,18 +64,18 @@ public class Acepcion {
 
   /**********************************************************************************************************/
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
+  // @Override
+  // public boolean equals(Object o) {
+  //   if (this == o) return true;
 
-    if (!(o instanceof Acepcion)) return false;
+  //   if (!(o instanceof Acepcion)) return false;
 
-    Acepcion that = (Acepcion) o;
-    return id != null && id.equals(that.getId());
-  }
+  //   Acepcion that = (Acepcion) o;
+  //   return id != null && id.equals(that.getId());
+  // }
 
-  @Override
-  public int hashCode() {
-    return 31;
-  }
+  // @Override
+  // public int hashCode() {
+  //   return 31;
+  // }
 }

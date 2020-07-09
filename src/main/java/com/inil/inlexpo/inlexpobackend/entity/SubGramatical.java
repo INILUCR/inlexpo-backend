@@ -1,18 +1,11 @@
 package com.inil.inlexpo.inlexpobackend.entity;
 
-import org.hibernate.annotations.NaturalIdCache;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-import java.util.Objects;
 
 @Entity(name = "SubGramatical")
 @Table(name = "subcategoria_gramatical")
