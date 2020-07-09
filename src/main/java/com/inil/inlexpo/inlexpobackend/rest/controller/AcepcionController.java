@@ -17,7 +17,7 @@ public class AcepcionController {
   @Autowired
   private AcepcionService acepcionSrv;
 
-  @GetMapping("/acepcion/articulo/{articuloId}")
+  @GetMapping("/articulo/{articuloId}/acepcion")
   public List<Acepcion> buscarPorArticulo(@PathVariable(value = "articuloId") Long articuloId)
       throws ResourceNotFoundException {
     

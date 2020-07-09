@@ -19,7 +19,7 @@ public class ArticuloController {
   @Autowired
   private ArticuloService articuloSrv;
 
-  @GetMapping("/articulo/diccionario/{diccionarioId}")
+  @GetMapping("/diccionario/{diccionarioId}/articulo")
   public List<Articulo> buscarPorDiccionario(@PathVariable(value = "diccionarioId") Long diccionarioId)
       throws ResourceNotFoundException {
     List<Articulo> listaArticulo = articuloSrv.buscarPorDiccionario(diccionarioId);
