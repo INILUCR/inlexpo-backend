@@ -26,9 +26,9 @@ public class SubGramaticalService {
     return subGrmRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Subcategoria Gramatical: " + id));
   }
 
-  public SubGramatical crear(Long catGrmId, SubGramatical subGramatical) {
+  public SubGramatical crear(Long catGramaticalId, SubGramatical subGramatical) {
     // Pedimos el diccionario que tenmos que asociar
-    CatGramatical catGramatical = catGrmSrv.buscarPorId(catGrmId);
+    CatGramatical catGramatical = catGrmSrv.buscarPorId(catGramaticalId);
 
     // Lo asociamos
     subGramatical.setCatGramatical(catGramatical);

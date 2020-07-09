@@ -15,9 +15,9 @@ import java.util.Objects;
 
 @Entity(name = "Diccionario")
 @Table(name = "diccionario")
-@NaturalIdCache
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "nombre")
+// @NaturalIdCache
+// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+// @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "nombre")
 public class Diccionario {
 
   @Id
@@ -73,19 +73,19 @@ public class Diccionario {
 
   /**********************************************************************************************************/
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
+  // @Override
+  // public boolean equals(Object o) {
+  //   if (this == o) return true;
 
-    if (o == null || getClass() != o.getClass())
-      return false;
+  //   if (o == null || getClass() != o.getClass())
+  //     return false;
 
-    Diccionario that = (Diccionario) o;
-    return Objects.equals(nombre, that.nombre);
-  }
+  //   Diccionario that = (Diccionario) o;
+  //   return Objects.equals(nombre, that.nombre);
+  // }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(nombre);
-  }
+  // @Override
+  // public int hashCode() {
+  //   return Objects.hash(nombre);
+  // }
 }

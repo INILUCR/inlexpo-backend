@@ -19,12 +19,12 @@ public class CatGramaticalController {
   private CatGramaticalService catGrmSrv;
 
 
-  @GetMapping("/catGrm")
+  @GetMapping("/catGramatical")
   public List<CatGramatical> buscarTodos () {
     return  catGrmSrv.buscarTodos();
   }
 
-  @PostMapping("/diccionario/{diccionarioId}/catGrm")
+  @PostMapping("/diccionario/{diccionarioId}/catGramatical")
   public CatGramatical crear (@PathVariable(value = "diccionarioId") Long diccionarioId,
                               @Valid @RequestBody CatGramatical catGramatical) {
     return catGrmSrv.crear(diccionarioId, catGramatical);

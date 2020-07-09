@@ -18,14 +18,14 @@ public class SubGramaticalController {
   @Autowired
   private SubGramaticalService subGrmSrv;
 
-  @GetMapping("/subGrm")
+  @GetMapping("/subGramatical")
   public List<SubGramatical> buscarTodos () {
     return  subGrmSrv.buscarTodos();
   }
 
-  @PostMapping("/catGrm/{catGrmId}/subGrm")
-  public SubGramatical crear (@PathVariable(value = "catGrmId") Long catGrmId,
+  @PostMapping("/catGramatical/{catGramaticalId}/subGramatical")
+  public SubGramatical crear (@PathVariable(value = "catGramaticalId") Long catGramaticalId,
                               @Valid @RequestBody SubGramatical subGramatical) {
-    return subGrmSrv.crear(catGrmId, subGramatical);
+    return subGrmSrv.crear(catGramaticalId, subGramatical);
   }
 }
