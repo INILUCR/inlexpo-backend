@@ -1,7 +1,5 @@
 package com.inil.inlexpo.inlexpobackend.entity;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -19,7 +17,7 @@ public class CatGramatical {
   @Column(name = "categoria_gramatical_id")
   private Long id;
 
-  @NaturalId
+  /* @NaturalId */
   @Column(name = "nombre", nullable = false)
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)

@@ -1,7 +1,5 @@
 package com.inil.inlexpo.inlexpobackend.entity;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -19,8 +17,8 @@ public class Articulo {
   @Column(name = "articulo_id")
   private Long id;
 
-  @NaturalId
-  @Column(name="lema", nullable = false, unique = true, length = 100)
+  /* @NaturalId */
+  @Column(name="lema", nullable = false, length = 100)
   private String lema;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
