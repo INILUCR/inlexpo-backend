@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ArticuloRepository extends JpaRepository<Articulo, Long> {
-  List<Articulo> findByDiccionario(Diccionario diccionario);
+  List<Articulo> findByDiccionarioOrderByLemaAsc(Diccionario diccionario);
 }

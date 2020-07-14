@@ -25,6 +25,10 @@ public class Acepcion {
   @JsonIgnore
   private Articulo articulo;
 
+  @ManyToOne(fetch = FetchType.EAGER, optional = true)
+  @JoinColumn(name = "categoria_gramatical_id")
+  private CatGramatical catGramatical;
+
   public Acepcion() {}
   public Acepcion(@NotNull String definicion, @NotNull Long prioridad) {
     this.definicion = definicion;
@@ -60,6 +64,13 @@ public class Acepcion {
 
   public void setArticulo(Articulo articulo) {
     this.articulo = articulo;
+  }
+
+  public CatGramatical getCatGramatical() {
+    return catGramatical;
+  }
+  public void setCatGramatical(CatGramatical catGramatical) {
+    this.catGramatical = catGramatical;
   }
 
   /**********************************************************************************************************/

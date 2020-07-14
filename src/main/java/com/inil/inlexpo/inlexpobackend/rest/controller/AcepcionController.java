@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/inlexpo")
@@ -29,5 +31,13 @@ public class AcepcionController {
     }
     
     return listaAcepcion;
+  }
+
+  @PostMapping("/articulo/{articuloId}/acepcion/catGramatical/{catGramaticalId}")
+  public Acepcion crear(@PathVariable(value = "articuloId") Long articuloId,
+    @PathVariable(value = "catGramaticalId") Long catGramaticalId,
+    @Valid @RequestBody Acepcion acepcion) {
+
+    return acepcionSrv.crear(articuloId, catGramaticalId, acepcion);
   }
 }

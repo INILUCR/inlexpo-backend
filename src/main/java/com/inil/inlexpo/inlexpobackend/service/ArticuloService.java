@@ -22,6 +22,16 @@ public class ArticuloService {
 
 	public List<Articulo> buscarPorDiccionario(Long diccionarioId) {
 		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
-		return articuloRep.findByDiccionario(diccionario);
+		return articuloRep.findByDiccionarioOrderByLemaAsc(diccionario);
+	}
+
+	public Articulo crear(Long diccionarioId, Articulo articulo) {
+		// Pedimos el diccionario que tenmos que asociar
+		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
+		
+		// Lo asociamos
+		articulo.setDiccionario(diccionario);
+		
+		return articuloRep.save(articulo);
 	}
 }

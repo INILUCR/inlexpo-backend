@@ -20,9 +20,14 @@ public class CatGramaticalService {
     return catGrmRep.findAll();
   }
 
-  public CatGramatical buscarPorId(Long id) {
-    return catGrmRep.findById(id).orElse(null);
+  public CatGramatical buscarPorId(Long catGramaticalId) {
+    return catGrmRep.findById(catGramaticalId).orElse(null);
   }
+
+  public List<CatGramatical> buscarPorDiccionario(Long diccionarioId) {
+		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
+		return catGrmRep.findByDiccionario(diccionario);
+	}
 
   public CatGramatical crear(Long diccionarioId, CatGramatical catGramatical) {
     // Pedimos el diccionario que tenmos que asociar

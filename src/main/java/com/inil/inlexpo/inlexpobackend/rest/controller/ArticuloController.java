@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/inlexpo")
@@ -28,5 +30,11 @@ public class ArticuloController {
       throw new ResourceNotFoundException(message);
     }
     return listaArticulo;
+  }
+
+  @PostMapping("/diccionario/{diccionarioId}/articulo")
+  public Articulo crear(@PathVariable(value = "diccionarioId") Long diccionarioId,
+                        @Valid @RequestBody Articulo articulo) {
+    return articuloSrv.crear(diccionarioId, articulo);
   }
 }
