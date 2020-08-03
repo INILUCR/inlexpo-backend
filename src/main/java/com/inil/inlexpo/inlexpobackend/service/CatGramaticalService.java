@@ -16,10 +16,6 @@ public class CatGramaticalService {
   @Autowired
   private DiccionarioService diccionarioSrv;
 
-  public List<CatGramatical> buscarTodos() {
-    return catGrmRep.findAll();
-  }
-
   public CatGramatical buscarPorId(Long catGramaticalId) {
     return catGrmRep.findById(catGramaticalId).orElse(null);
   }
