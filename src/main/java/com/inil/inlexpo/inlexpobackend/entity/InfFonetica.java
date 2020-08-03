@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.NaturalId;
 
-@Entity(name = "MarDiatopica")
-@Table(name = "marcacion_diatopica")
-public class MarDiatopica {
+@Entity(name = "InfFonetica")
+@Table(name = "informacion_fonetica")
+public class InfFonetica {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "marcacion_diatopica_id")
+  @Column(name = "informacion_fonetica_id")
   private Long id;
 
   @NaturalId
@@ -27,10 +27,10 @@ public class MarDiatopica {
   @JsonIgnore
   private Diccionario diccionario;
 
-  public MarDiatopica() {
+  public InfFonetica() {
   }
 
-  public MarDiatopica(@NotNull String nombre, @NotNull String descripcion) {
+  public InfFonetica(@NotNull String nombre, @NotNull String descripcion) {
     this.nombre = nombre;
     this.descripcion = descripcion;
   }
