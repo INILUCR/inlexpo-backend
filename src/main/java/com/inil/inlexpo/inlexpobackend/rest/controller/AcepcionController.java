@@ -1,5 +1,6 @@
 package com.inil.inlexpo.inlexpobackend.rest.controller;
 
+import com.inil.inlexpo.inlexpobackend.dto.DatosAcepcion;
 import com.inil.inlexpo.inlexpobackend.entity.Acepcion;
 import com.inil.inlexpo.inlexpobackend.exception.ResourceNotFoundException;
 import com.inil.inlexpo.inlexpobackend.service.AcepcionService;
@@ -33,11 +34,10 @@ public class AcepcionController {
     return listaAcepcion;
   }
 
-  @PostMapping("/articulo/{articuloId}/acepcion/catGramatical/{catGramaticalId}")
+  @PostMapping("/articulo/{articuloId}/acepcion")
   public Acepcion crear(@PathVariable(value = "articuloId") Long articuloId,
-    @PathVariable(value = "catGramaticalId") Long catGramaticalId,
-    @Valid @RequestBody Acepcion acepcion) {
+    @Valid @RequestBody DatosAcepcion datosAcepcion) {
 
-    return acepcionSrv.crear(articuloId, catGramaticalId, acepcion);
+    return acepcionSrv.crear(articuloId, datosAcepcion);
   }
 }

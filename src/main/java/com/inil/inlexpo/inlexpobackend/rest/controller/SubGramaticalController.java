@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.inil.inlexpo.inlexpobackend.entity.SubGramatical;
+import com.inil.inlexpo.inlexpobackend.exception.ResourceNotFoundException;
 import com.inil.inlexpo.inlexpobackend.service.SubGramaticalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,15 @@ public class SubGramaticalController {
   @Autowired
   private SubGramaticalService subGrmSrv;
 
-  @GetMapping("/subGramatical")
-  public List<SubGramatical> buscarTodos () {
-    return  subGrmSrv.buscarTodos();
+  @GetMapping("/catGramatical/{catGramaticalId}/subGramatical")
+  public List<SubGramatical> buscarPorCatGramatical(@PathVariable(value = "catGramaticalId") Long catGramaticalId) 
+    throws ResourceNotFoundException {
+    
+    List<SubGramatical> listaSubGramaticales = subGrmSrv.buscarPorCatGramatical(catGramaticalId);
+    if (listaSubGramaticales == null) {
+      throw new ResourceNotFoundException("");
+    }
+    return listaSubGramaticales;
   }
 
   @PostMapping("/catGramatical/{catGramaticalId}/subGramatical")

@@ -29,6 +29,10 @@ public class Acepcion {
   @JoinColumn(name = "categoria_gramatical_id")
   private CatGramatical catGramatical;
 
+  @ManyToOne(fetch = FetchType.EAGER, optional = true)
+  @JoinColumn(name = "subcategoria_gramatical_id")
+  private SubGramatical subGramatical;
+
   public Acepcion() {}
   public Acepcion(@NotNull String definicion, @NotNull Long prioridad) {
     this.definicion = definicion;
@@ -71,6 +75,13 @@ public class Acepcion {
   }
   public void setCatGramatical(CatGramatical catGramatical) {
     this.catGramatical = catGramatical;
+  }
+
+  public SubGramatical getSubGramatical() {
+    return subGramatical;
+  }
+  public void setSubGramatical(SubGramatical subGramatical) {
+    this.subGramatical = subGramatical;
   }
 
   /**********************************************************************************************************/

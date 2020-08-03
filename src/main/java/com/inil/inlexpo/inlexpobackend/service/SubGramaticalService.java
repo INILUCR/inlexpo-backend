@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.inil.inlexpo.inlexpobackend.entity.CatGramatical;
 import com.inil.inlexpo.inlexpobackend.entity.SubGramatical;
-import com.inil.inlexpo.inlexpobackend.exception.ResourceNotFoundException;
 import com.inil.inlexpo.inlexpobackend.repository.SubGramaticalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +16,14 @@ public class SubGramaticalService {
   @Autowired
   private CatGramaticalService catGrmSrv;
 
-
-  public List<SubGramatical> buscarTodos() {
-    return subGrmRep.findAll();
+  public SubGramatical buscarPorId(Long subGramaticalId) {
+    return subGrmRep.findById(subGramaticalId).orElse(null);
   }
 
-  public SubGramatical buscarPorId(Long id) throws ResourceNotFoundException {
-    return subGrmRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Subcategoria Gramatical: " + id));
-  }
+  public List<SubGramatical> buscarPorCatGramatical(Long catGramaticalId) {
+		CatGramatical catGramatical = catGrmSrv.buscarPorId(catGramaticalId);
+		return subGrmRep.findByCatGramatical(catGramatical);
+	}
 
   public SubGramatical crear(Long catGramaticalId, SubGramatical subGramatical) {
     // Pedimos el diccionario que tenmos que asociar
