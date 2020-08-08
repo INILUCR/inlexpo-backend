@@ -21,6 +21,11 @@ public class Acepcion {
   private Long prioridad;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "diccionario_id")
+  @JsonIgnore
+  private Diccionario diccionario;
+
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "articulo_id")
   @JsonIgnore
   private Articulo articulo;
@@ -111,6 +116,14 @@ public class Acepcion {
 
   public void setPrioridad(Long prioridad) {
     this.prioridad = prioridad;
+  }
+
+  public Diccionario getDiccionario() {
+    return diccionario;
+  }
+
+  public void setDiccionario(Diccionario diccionario) {
+    this.diccionario = diccionario;
   }
 
   public Articulo getArticulo() {
