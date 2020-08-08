@@ -4,6 +4,7 @@ import com.inil.inlexpo.inlexpobackend.dto.DatosAcepcion;
 import com.inil.inlexpo.inlexpobackend.entity.Acepcion;
 import com.inil.inlexpo.inlexpobackend.entity.Articulo;
 import com.inil.inlexpo.inlexpobackend.entity.CatGramatical;
+import com.inil.inlexpo.inlexpobackend.entity.Diccionario;
 import com.inil.inlexpo.inlexpobackend.entity.InfEtimologica;
 import com.inil.inlexpo.inlexpobackend.entity.InfFonetica;
 import com.inil.inlexpo.inlexpobackend.entity.InfMorfologica;
@@ -17,6 +18,7 @@ import com.inil.inlexpo.inlexpobackend.entity.MarPragmatica;
 import com.inil.inlexpo.inlexpobackend.entity.MarValoracionSocial;
 import com.inil.inlexpo.inlexpobackend.entity.SubGramatical;
 import com.inil.inlexpo.inlexpobackend.repository.AcepcionRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,8 @@ public class AcepcionService {
 
   @Autowired
   private AcepcionRepository acepcionRep;
+  @Autowired
+  private DiccionarioService diccionarioService;
   @Autowired
   private ArticuloService articuloSrv;
   @Autowired
@@ -71,6 +75,11 @@ public class AcepcionService {
     // Pedimos las asociaciones y las asociamos
     Articulo articulo = articuloSrv.buscarPorId(articuloId);
     acepcion.setArticulo(articulo);
+
+    // Inicializamos el objeto de carga lenta
+    Long diccionarioId = articulo.getDiccionario().getId();
+    Diccionario diccionario = diccionarioService.buscarPorId(diccionarioId);
+    acepcion.setDiccionario(diccionario);
 
     if (datosAcepcion.getCatGramaticalId() > 0) {
       CatGramatical catGramatical = catGramaticalService.buscarPorId(datosAcepcion.getCatGramaticalId());
