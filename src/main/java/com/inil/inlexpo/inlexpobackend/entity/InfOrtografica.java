@@ -10,16 +10,16 @@ import org.hibernate.annotations.NaturalId;
 @Entity(name = "InfOrtografica")
 @Table(name = "informacion_ortografica")
 public class InfOrtografica {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "informacion_ortografica_id")
   private Long id;
 
   @NaturalId
-  @Column(name="nombre", nullable = false, unique = true)
+  @Column(name = "nombre", nullable = false)
   private String nombre;
-  @Column(name="descripcion", nullable = false, length = 1000)
+  @Column(name = "descripcion", nullable = false, length = 1000)
   private String descripcion;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -27,7 +27,9 @@ public class InfOrtografica {
   @JsonIgnore
   private Diccionario diccionario;
 
-  public InfOrtografica() {}
+  public InfOrtografica() {
+  }
+
   public InfOrtografica(@NotNull String nombre, @NotNull String descripcion) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -38,6 +40,7 @@ public class InfOrtografica {
   public Long getId() {
     return id;
   }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -45,6 +48,7 @@ public class InfOrtografica {
   public String getNombre() {
     return nombre;
   }
+
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -52,6 +56,7 @@ public class InfOrtografica {
   public String getDescripcion() {
     return descripcion;
   }
+
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
@@ -59,6 +64,7 @@ public class InfOrtografica {
   public Diccionario getDiccionario() {
     return diccionario;
   }
+
   public void setDiccionario(Diccionario diccionario) {
     this.diccionario = diccionario;
   }

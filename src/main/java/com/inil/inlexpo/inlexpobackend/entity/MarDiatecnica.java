@@ -17,7 +17,7 @@ public class MarDiatecnica {
   private Long id;
 
   @NaturalId
-  @Column(name = "nombre", nullable = false, unique = true)
+  @Column(name = "nombre", nullable = false)
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)
   private String descripcion;
