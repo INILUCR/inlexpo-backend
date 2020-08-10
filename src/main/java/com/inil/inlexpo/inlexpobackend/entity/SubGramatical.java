@@ -7,10 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "SubGramatical")
 @Table(name = "subcategoria_gramatical")
-// @NaturalIdCache
-// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-// @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
-// property = "nombre")
 public class SubGramatical {
 
   @Id
@@ -18,7 +14,6 @@ public class SubGramatical {
   @Column(name = "subcategoria_gramatical_id")
   private Long id;
 
-  /* @NaturalId */
   @Column(name = "nombre", nullable = false)
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)
@@ -31,7 +26,9 @@ public class SubGramatical {
   @JsonIgnore
   private CatGramatical catGramatical;
 
-  public SubGramatical() {}
+  public SubGramatical() {
+  }
+
   public SubGramatical(@NotNull String nombre, @NotNull String descripcion, @NotNull String abreviatura) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -43,6 +40,7 @@ public class SubGramatical {
   public Long getId() {
     return id;
   }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -50,6 +48,7 @@ public class SubGramatical {
   public String getNombre() {
     return nombre;
   }
+
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -57,6 +56,7 @@ public class SubGramatical {
   public String getDescripcion() {
     return descripcion;
   }
+
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
@@ -64,6 +64,7 @@ public class SubGramatical {
   public String getAbreviatura() {
     return abreviatura;
   }
+
   public void setAbreviatura(String abreviatura) {
     this.abreviatura = abreviatura;
   }
@@ -71,24 +72,8 @@ public class SubGramatical {
   public CatGramatical getCatGramatical() {
     return catGramatical;
   }
+
   public void setCatGramatical(CatGramatical catGramatical) {
     this.catGramatical = catGramatical;
   }
-
-  /**********************************************************************************************************/
-
-  // @Override
-  // public boolean equals(Object o) {
-  //   if (this == o)
-  //     return true;
-  //   if (o == null || getClass() != o.getClass())
-  //     return false;
-  //   SubGramatical that = (SubGramatical) o;
-  //   return Objects.equals(nombre, that.nombre);
-  // }
-
-  // @Override
-  // public int hashCode() {
-  //   return Objects.hash(nombre);
-  // }
 }

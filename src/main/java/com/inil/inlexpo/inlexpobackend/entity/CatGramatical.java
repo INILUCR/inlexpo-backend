@@ -7,9 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "CatGramatical")
 @Table(name = "categoria_gramatical")
-// @NaturalIdCache
-// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-// @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "nombre")
 public class CatGramatical {
 
   @Id
@@ -17,20 +14,21 @@ public class CatGramatical {
   @Column(name = "categoria_gramatical_id")
   private Long id;
 
-  /* @NaturalId */
   @Column(name = "nombre", nullable = false)
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)
   private String descripcion;
   @Column(name = "abreviatura", nullable = false, length = 20)
   private String abreviatura;
-  
+
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "diccionario_id")
   @JsonIgnore
   private Diccionario diccionario;
 
-  public CatGramatical() {}
+  public CatGramatical() {
+  }
+
   public CatGramatical(@NotNull String nombre, @NotNull String descripcion, @NotNull String abreviatura) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -42,6 +40,7 @@ public class CatGramatical {
   public Long getId() {
     return id;
   }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -49,6 +48,7 @@ public class CatGramatical {
   public String getNombre() {
     return nombre;
   }
+
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -56,6 +56,7 @@ public class CatGramatical {
   public String getDescripcion() {
     return descripcion;
   }
+
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
@@ -63,6 +64,7 @@ public class CatGramatical {
   public String getAbreviatura() {
     return abreviatura;
   }
+
   public void setAbreviatura(String abreviatura) {
     this.abreviatura = abreviatura;
   }
@@ -70,24 +72,8 @@ public class CatGramatical {
   public Diccionario getDiccionario() {
     return diccionario;
   }
+
   public void setDiccionario(Diccionario diccionario) {
     this.diccionario = diccionario;
   }
-
-  /**********************************************************************************************************/
-
-  // @Override
-  // public boolean equals(Object o) {
-  //   if (this == o)
-  //     return true;
-  //   if (o == null || getClass() != o.getClass())
-  //     return false;
-  //   CatGramatical that = (CatGramatical) o;
-  //   return Objects.equals(nombre, that.nombre);
-  // }
-
-  // @Override
-  // public int hashCode() {
-  //   return Objects.hash(nombre);
-  // }
 }

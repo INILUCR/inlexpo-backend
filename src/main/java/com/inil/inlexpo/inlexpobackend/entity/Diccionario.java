@@ -7,9 +7,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity(name = "Diccionario")
 @Table(name = "diccionario")
-// @NaturalIdCache
-// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-// @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "nombre")
 public class Diccionario {
 
   @Id
@@ -18,15 +15,16 @@ public class Diccionario {
   private Long id;
 
   @NaturalId
-  @Column(name="nombre", nullable = false, unique = true)
+  @Column(name = "nombre", nullable = false, unique = true)
   private String nombre;
-  @Column(name="descripcion", nullable = false, length = 1000)
+  @Column(name = "descripcion", nullable = false, length = 1000)
   private String descripcion;
-  @Column(name="tipo", nullable = false, length = 20)
+  @Column(name = "tipo", nullable = false, length = 20)
   private String tipo;
 
+  public Diccionario() {
+  }
 
-  public Diccionario() {}
   public Diccionario(@NotNull String nombre, @NotNull String descripcion, @NotNull String tipo) {
     this.nombre = nombre;
     this.descripcion = descripcion;
@@ -38,6 +36,7 @@ public class Diccionario {
   public Long getId() {
     return id;
   }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -45,6 +44,7 @@ public class Diccionario {
   public String getNombre() {
     return nombre;
   }
+
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -52,6 +52,7 @@ public class Diccionario {
   public String getDescripcion() {
     return descripcion;
   }
+
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
@@ -59,25 +60,8 @@ public class Diccionario {
   public String getTipo() {
     return tipo;
   }
+
   public void setTipo(String tipo) {
     this.tipo = tipo;
   }
-
-  /**********************************************************************************************************/
-
-  // @Override
-  // public boolean equals(Object o) {
-  //   if (this == o) return true;
-
-  //   if (o == null || getClass() != o.getClass())
-  //     return false;
-
-  //   Diccionario that = (Diccionario) o;
-  //   return Objects.equals(nombre, that.nombre);
-  // }
-
-  // @Override
-  // public int hashCode() {
-  //   return Objects.hash(nombre);
-  // }
 }

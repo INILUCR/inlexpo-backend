@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "Acepcion")
 @Table(name = "acepcion")
-// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Acepcion {
 
   @Id
@@ -239,21 +238,4 @@ public class Acepcion {
   public void setMarValoracionSocial(MarValoracionSocial marValoracionSocial) {
     this.marValoracionSocial = marValoracionSocial;
   }
-
-  /**********************************************************************************************************/
-
-  // @Override
-  // public boolean equals(Object o) {
-  // if (this == o) return true;
-
-  // if (!(o instanceof Acepcion)) return false;
-
-  // Acepcion that = (Acepcion) o;
-  // return id != null && id.equals(that.getId());
-  // }
-
-  // @Override
-  // public int hashCode() {
-  // return 31;
-  // }
 }
