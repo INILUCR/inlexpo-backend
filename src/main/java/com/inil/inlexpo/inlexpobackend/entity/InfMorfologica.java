@@ -5,8 +5,6 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.hibernate.annotations.NaturalId;
-
 @Entity(name = "InfMorfologica")
 @Table(name = "informacion_morfologica")
 public class InfMorfologica {
@@ -16,7 +14,6 @@ public class InfMorfologica {
   @Column(name = "informacion_morfologica_id")
   private Long id;
 
-  @NaturalId
   @Column(name = "nombre", nullable = false)
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)
