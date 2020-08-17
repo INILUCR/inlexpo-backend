@@ -23,21 +23,34 @@ public class AcepcionController {
   @GetMapping("/articulo/{articuloId}/acepcion")
   public List<Acepcion> buscarPorArticulo(@PathVariable(value = "articuloId") Long articuloId)
       throws ResourceNotFoundException {
-    
+
     List<Acepcion> listaAcepcion = acepcionSrv.buscarPorArticulo(articuloId);
-    
+
     if (listaAcepcion == null) {
       String message = ArticuloController.ARTICULO_NO_ENCONTRADO + articuloId;
       throw new ResourceNotFoundException(message);
     }
-    
+
     return listaAcepcion;
   }
 
   @PostMapping("/articulo/{articuloId}/acepcion")
   public Acepcion crear(@PathVariable(value = "articuloId") Long articuloId,
-    @Valid @RequestBody DatosAcepcion datosAcepcion) {
+      @Valid @RequestBody DatosAcepcion datosAcepcion) {
 
     return acepcionSrv.crear(articuloId, datosAcepcion);
+  }
+
+  @PutMapping("/articulo/{articuloId}/acepcion/{acepcionId}")
+  public Acepcion actualizar(@PathVariable(value = "articuloId") Long articuloId,
+      @PathVariable(value = "acepcionId") Long acepcionId, @Valid @RequestBody DatosAcepcion datosAcepcion) {
+
+    return acepcionSrv.actualizar(articuloId, acepcionId, datosAcepcion);
+  }
+
+  @DeleteMapping("/articulo/{articuloId}/acepcion/{acepcionId}")
+  public Boolean eliminar(@PathVariable(value = "articuloId") Long articuloId,
+      @PathVariable(value = "acepcionId") Long acepcionId) {
+    return acepcionSrv.eliminar(articuloId, acepcionId);
   }
 }

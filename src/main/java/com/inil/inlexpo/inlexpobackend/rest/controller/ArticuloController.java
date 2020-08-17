@@ -21,6 +21,12 @@ public class ArticuloController {
   @Autowired
   private ArticuloService articuloSrv;
 
+  @GetMapping("/diccionario/{diccionarioId}/articulo/{articuloId}")
+  public Articulo buscarPorId(@PathVariable(value = "diccionarioId") Long diccionarioId,
+      @PathVariable(value = "articuloId") Long articuloId) {
+    return articuloSrv.buscarPorId(articuloId);
+  }
+
   @GetMapping("/diccionario/{diccionarioId}/articulo")
   public List<Articulo> buscarPorDiccionario(@PathVariable(value = "diccionarioId") Long diccionarioId)
       throws ResourceNotFoundException {
@@ -34,7 +40,13 @@ public class ArticuloController {
 
   @PostMapping("/diccionario/{diccionarioId}/articulo")
   public Articulo crear(@PathVariable(value = "diccionarioId") Long diccionarioId,
-                        @Valid @RequestBody Articulo articulo) {
+      @Valid @RequestBody Articulo articulo) {
     return articuloSrv.crear(diccionarioId, articulo);
+  }
+
+  @PutMapping("/diccionario/{diccionarioId}/articulo/{articuloId}")
+  public Articulo actualizar(@PathVariable(value = "diccionarioId") Long diccionarioId,
+      @PathVariable(value = "articuloId") Long articuloId, @Valid @RequestBody Articulo articulo) {
+    return articuloSrv.actualizar(diccionarioId, articuloId, articulo);
   }
 }

@@ -28,10 +28,18 @@ public class ArticuloService {
 	public Articulo crear(Long diccionarioId, Articulo articulo) {
 		// Pedimos el diccionario que tenmos que asociar
 		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
-		
+
 		// Lo asociamos
 		articulo.setDiccionario(diccionario);
-		
+
 		return articuloRep.save(articulo);
+	}
+
+	public Articulo actualizar(Long diccionarioId, Long articuloId, Articulo articulo) {
+		Articulo articuloActual = articuloRep.findById(articuloId).orElse(null);
+		articuloActual.setLema(articulo.getLema());
+
+		final Articulo articuloActualizado = articuloRep.save(articuloActual);
+		return articuloActualizado;
 	}
 }
