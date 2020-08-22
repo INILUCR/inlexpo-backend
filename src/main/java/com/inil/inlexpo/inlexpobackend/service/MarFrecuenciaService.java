@@ -35,4 +35,20 @@ public class MarFrecuenciaService {
 
     return marFrecuenciaRep.save(marFrecuencia);
   }
+
+  public MarFrecuencia actualizar(Long marFrecuenciaId, MarFrecuencia marFrecuencia) {
+    MarFrecuencia marFrecuenciaActual = marFrecuenciaRep.findById(marFrecuenciaId).orElse(null);
+    marFrecuenciaActual.setNombre(marFrecuencia.getNombre());
+    marFrecuenciaActual.setDescripcion(marFrecuencia.getDescripcion());
+
+    final MarFrecuencia marFrecuenciaActualizada = marFrecuenciaRep.save(marFrecuenciaActual);
+    return marFrecuenciaActualizada;
+  }
+
+  public Boolean eliminar(Long marFrecuenciaId) {
+    MarFrecuencia marFrecuencia = marFrecuenciaRep.findById(marFrecuenciaId).orElse(null);
+
+    marFrecuenciaRep.delete(marFrecuencia);
+    return true;
+  }
 }

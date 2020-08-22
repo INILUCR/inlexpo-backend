@@ -35,4 +35,20 @@ public class InfFoneticaService {
 
     return infFoneticaRep.save(infFonetica);
   }
+
+  public InfFonetica actualizar(Long infFoneticaId, InfFonetica infFonetica) {
+    InfFonetica infFoneticaActual = infFoneticaRep.findById(infFoneticaId).orElse(null);
+    infFoneticaActual.setNombre(infFonetica.getNombre());
+    infFoneticaActual.setDescripcion(infFonetica.getDescripcion());
+
+    final InfFonetica infFoneticaActualizada = infFoneticaRep.save(infFoneticaActual);
+    return infFoneticaActualizada;
+  }
+
+  public Boolean eliminar(Long infFoneticaId) {
+    InfFonetica infFonetica = infFoneticaRep.findById(infFoneticaId).orElse(null);
+
+    infFoneticaRep.delete(infFonetica);
+    return true;
+  }
 }

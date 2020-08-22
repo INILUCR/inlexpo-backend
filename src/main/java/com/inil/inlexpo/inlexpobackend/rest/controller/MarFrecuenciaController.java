@@ -35,4 +35,15 @@ public class MarFrecuenciaController {
       @Valid @RequestBody MarFrecuencia marFrecuencia) {
     return marFrecuenciaSrv.crear(diccionarioId, marFrecuencia);
   }
+
+  @PutMapping("/marFrecuencia/{marFrecuenciaId}")
+  public MarFrecuencia actualizar(@PathVariable(value = "marFrecuenciaId") Long marFrecuenciaId,
+      @Valid @RequestBody MarFrecuencia marFrecuencia) {
+    return marFrecuenciaSrv.actualizar(marFrecuenciaId, marFrecuencia);
+  }
+
+  @DeleteMapping("/marFrecuencia/{marFrecuenciaId}")
+  public Boolean eliminar(@PathVariable(value = "marFrecuenciaId") Long marFrecuenciaId) {
+    return marFrecuenciaSrv.eliminar(marFrecuenciaId);
+  }
 }

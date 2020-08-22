@@ -17,27 +17,28 @@ public class DiccionarioService {
     return diccionarioRep.findAll();
   }
 
-  public Diccionario buscarPorId (Long id) {
+  public Diccionario buscarPorId(Long id) {
     return diccionarioRep.findById(id).orElse(null);
   }
 
-  public Diccionario crear (Diccionario diccionario) {
+  public Diccionario crear(Diccionario diccionario) {
     return diccionarioRep.save(diccionario);
   }
 
-  /*public Diccionario update (Long id, Diccionario d) throws ResourceNotFoundException {
-    Diccionario dActual = diccionarioRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Diccionario: " + id));
-    dActual.setNombre(d.getNombre());
-    dActual.setDescripcion(d.getDescripcion());
-    dActual.setTipo(d.getTipo());
-    dActual = diccionarioRep.save(dActual);
+  public Diccionario actualizar(Long diccionarioId, Diccionario diccionario) {
+    Diccionario diccionarioActual = diccionarioRep.findById(diccionarioId).orElse(null);
+    diccionarioActual.setNombre(diccionario.getNombre());
+    diccionarioActual.setDescripcion(diccionario.getDescripcion());
+    diccionarioActual.setTipo(diccionario.getTipo());
 
-    return dActual;
+    final Diccionario diccionarioActualizado = diccionarioRep.save(diccionarioActual);
+    return diccionarioActualizado;
   }
 
-  public boolean delete (Long id) throws ResourceNotFoundException {
-    Diccionario d = diccionarioRep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Diccionario: " + id));
-    diccionarioRep.delete(d);
-    return true;
-  }*/
+  /*
+   * public boolean delete (Long id) throws ResourceNotFoundException {
+   * Diccionario d = diccionarioRep.findById(id).orElseThrow(() -> new
+   * ResourceNotFoundException("Diccionario: " + id)); diccionarioRep.delete(d);
+   * return true; }
+   */
 }

@@ -1,7 +1,5 @@
 package com.inil.inlexpo.inlexpobackend.entity;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +12,6 @@ public class Diccionario {
   @Column(name = "diccionario_id")
   private Long id;
 
-  @NaturalId
   @Column(name = "nombre", nullable = false, unique = true)
   private String nombre;
   @Column(name = "descripcion", nullable = false, length = 1000)

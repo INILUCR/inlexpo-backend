@@ -35,4 +35,20 @@ public class MarDiacronicaService {
 
     return marDiacronicaRep.save(marDiacronica);
   }
+
+  public MarDiacronica actualizar(Long marDiacronicaId, MarDiacronica marDiacronica) {
+    MarDiacronica marDiacronicaActual = marDiacronicaRep.findById(marDiacronicaId).orElse(null);
+    marDiacronicaActual.setNombre(marDiacronica.getNombre());
+    marDiacronicaActual.setDescripcion(marDiacronica.getDescripcion());
+
+    final MarDiacronica marDiacronicaActualizada = marDiacronicaRep.save(marDiacronicaActual);
+    return marDiacronicaActualizada;
+  }
+
+  public Boolean eliminar(Long marDiacronicaId) {
+    MarDiacronica marDiacronica = marDiacronicaRep.findById(marDiacronicaId).orElse(null);
+
+    marDiacronicaRep.delete(marDiacronica);
+    return true;
+  }
 }

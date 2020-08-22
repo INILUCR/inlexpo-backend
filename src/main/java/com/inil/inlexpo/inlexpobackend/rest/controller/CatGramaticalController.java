@@ -15,15 +15,15 @@ import javax.validation.Valid;
 @RequestMapping("/inlexpo")
 
 public class CatGramaticalController {
-  
+
   @Autowired
-  private CatGramaticalService catGrmSrv;
+  private CatGramaticalService catGramaticalSrv;
 
   @GetMapping("/diccionario/{diccionarioId}/catGramatical")
-  public List<CatGramatical> buscarPorDiccionario(@PathVariable(value = "diccionarioId") Long diccionarioId) 
-    throws ResourceNotFoundException {
-    
-    List<CatGramatical> listaCatGramaticales = catGrmSrv.buscarPorDiccionario(diccionarioId);
+  public List<CatGramatical> buscarPorDiccionario(@PathVariable(value = "diccionarioId") Long diccionarioId)
+      throws ResourceNotFoundException {
+
+    List<CatGramatical> listaCatGramaticales = catGramaticalSrv.buscarPorDiccionario(diccionarioId);
     if (listaCatGramaticales == null) {
       throw new ResourceNotFoundException("");
     }
@@ -31,8 +31,19 @@ public class CatGramaticalController {
   }
 
   @PostMapping("/diccionario/{diccionarioId}/catGramatical")
-  public CatGramatical crear (@PathVariable(value = "diccionarioId") Long diccionarioId,
-                              @Valid @RequestBody CatGramatical catGramatical) {
-    return catGrmSrv.crear(diccionarioId, catGramatical);
+  public CatGramatical crear(@PathVariable(value = "diccionarioId") Long diccionarioId,
+      @Valid @RequestBody CatGramatical catGramatical) {
+    return catGramaticalSrv.crear(diccionarioId, catGramatical);
+  }
+
+  @PutMapping("/catGramatical/{catGramaticalId}")
+  public CatGramatical actualizar(@PathVariable(value = "catGramaticalId") Long catGramaticalId,
+      @Valid @RequestBody CatGramatical catGramatical) {
+    return catGramaticalSrv.actualizar(catGramaticalId, catGramatical);
+  }
+
+  @DeleteMapping("/catGramatical/{catGramaticalId}")
+  public Boolean eliminar(@PathVariable(value = "catGramaticalId") Long catGramaticalId) {
+    return catGramaticalSrv.eliminar(catGramaticalId);
   }
 }

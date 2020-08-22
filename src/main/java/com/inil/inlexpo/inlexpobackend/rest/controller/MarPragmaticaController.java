@@ -35,4 +35,15 @@ public class MarPragmaticaController {
       @Valid @RequestBody MarPragmatica marPragmatica) {
     return marPragmaticaSrv.crear(diccionarioId, marPragmatica);
   }
+
+  @PutMapping("/marPragmatica/{marPragmaticaId}")
+  public MarPragmatica actualizar(@PathVariable(value = "marPragmaticaId") Long marPragmaticaId,
+      @Valid @RequestBody MarPragmatica marPragmatica) {
+    return marPragmaticaSrv.actualizar(marPragmaticaId, marPragmatica);
+  }
+
+  @DeleteMapping("/marPragmatica/{marPragmaticaId}")
+  public Boolean eliminar(@PathVariable(value = "marPragmaticaId") Long marPragmaticaId) {
+    return marPragmaticaSrv.eliminar(marPragmaticaId);
+  }
 }

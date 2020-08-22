@@ -35,4 +35,20 @@ public class MarValoracionSocialService {
 
     return marValoracionSocialRep.save(marValoracionSocial);
   }
+
+  public MarValoracionSocial actualizar(Long marValoracionSocialId, MarValoracionSocial marValoracionSocial) {
+    MarValoracionSocial marValoracionSocialActual = marValoracionSocialRep.findById(marValoracionSocialId).orElse(null);
+    marValoracionSocialActual.setNombre(marValoracionSocial.getNombre());
+    marValoracionSocialActual.setDescripcion(marValoracionSocial.getDescripcion());
+
+    final MarValoracionSocial marValoracionSocialActualizada = marValoracionSocialRep.save(marValoracionSocialActual);
+    return marValoracionSocialActualizada;
+  }
+
+  public Boolean eliminar(Long marValoracionSocialId) {
+    MarValoracionSocial marValoracionSocial = marValoracionSocialRep.findById(marValoracionSocialId).orElse(null);
+
+    marValoracionSocialRep.delete(marValoracionSocial);
+    return true;
+  }
 }

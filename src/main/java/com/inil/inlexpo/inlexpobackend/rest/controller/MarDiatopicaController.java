@@ -15,14 +15,14 @@ import javax.validation.Valid;
 @RequestMapping("/inlexpo")
 
 public class MarDiatopicaController {
-  
+
   @Autowired
   private MarDiatopicaService marDiatopicaSrv;
 
   @GetMapping("/diccionario/{diccionarioId}/marDiatopica")
-  public List<MarDiatopica> buscarPorDiccionario(@PathVariable(value = "diccionarioId") Long diccionarioId) 
-    throws ResourceNotFoundException {
-    
+  public List<MarDiatopica> buscarPorDiccionario(@PathVariable(value = "diccionarioId") Long diccionarioId)
+      throws ResourceNotFoundException {
+
     List<MarDiatopica> listaMarDiatopicas = marDiatopicaSrv.buscarPorDiccionario(diccionarioId);
     if (listaMarDiatopicas == null) {
       throw new ResourceNotFoundException("");
@@ -31,8 +31,19 @@ public class MarDiatopicaController {
   }
 
   @PostMapping("/diccionario/{diccionarioId}/marDiatopica")
-  public MarDiatopica crear (@PathVariable(value = "diccionarioId") Long diccionarioId,
-                              @Valid @RequestBody MarDiatopica marDiatopica) {
+  public MarDiatopica crear(@PathVariable(value = "diccionarioId") Long diccionarioId,
+      @Valid @RequestBody MarDiatopica marDiatopica) {
     return marDiatopicaSrv.crear(diccionarioId, marDiatopica);
+  }
+
+  @PutMapping("/marDiatopica/{marDiatopicaId}")
+  public MarDiatopica actualizar(@PathVariable(value = "marDiatopicaId") Long marDiatopicaId,
+      @Valid @RequestBody MarDiatopica marDiatopica) {
+    return marDiatopicaSrv.actualizar(marDiatopicaId, marDiatopica);
+  }
+
+  @DeleteMapping("/marDiatopica/{marDiatopicaId}")
+  public Boolean eliminar(@PathVariable(value = "marDiatopicaId") Long marDiatopicaId) {
+    return marDiatopicaSrv.eliminar(marDiatopicaId);
   }
 }

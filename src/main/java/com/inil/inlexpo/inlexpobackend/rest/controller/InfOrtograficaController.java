@@ -35,4 +35,15 @@ public class InfOrtograficaController {
       @Valid @RequestBody InfOrtografica infOrtografica) {
     return infOrtograficaSrv.crear(diccionarioId, infOrtografica);
   }
+
+  @PutMapping("/infOrtografica/{infOrtograficaId}")
+  public InfOrtografica actualizar(@PathVariable(value = "infOrtograficaId") Long infOrtograficaId,
+      @Valid @RequestBody InfOrtografica infOrtografica) {
+    return infOrtograficaSrv.actualizar(infOrtograficaId, infOrtografica);
+  }
+
+  @DeleteMapping("/infOrtografica/{infOrtograficaId}")
+  public Boolean eliminar(@PathVariable(value = "infOrtograficaId") Long infOrtograficaId) {
+    return infOrtograficaSrv.eliminar(infOrtograficaId);
+  }
 }

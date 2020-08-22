@@ -35,4 +35,20 @@ public class InfMorfologicaService {
 
     return infMorfologicaRep.save(infMorfologica);
   }
+
+  public InfMorfologica actualizar(Long infMorfologicaId, InfMorfologica infMorfologica) {
+    InfMorfologica infMorfologicaActual = infMorfologicaRep.findById(infMorfologicaId).orElse(null);
+    infMorfologicaActual.setNombre(infMorfologica.getNombre());
+    infMorfologicaActual.setDescripcion(infMorfologica.getDescripcion());
+
+    final InfMorfologica infMorfologicaActualizada = infMorfologicaRep.save(infMorfologicaActual);
+    return infMorfologicaActualizada;
+  }
+
+  public Boolean eliminar(Long infMorfologicaId) {
+    InfMorfologica infMorfologica = infMorfologicaRep.findById(infMorfologicaId).orElse(null);
+
+    infMorfologicaRep.delete(infMorfologica);
+    return true;
+  }
 }

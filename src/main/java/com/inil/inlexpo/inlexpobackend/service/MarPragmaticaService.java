@@ -35,4 +35,20 @@ public class MarPragmaticaService {
 
     return marPragmaticaRep.save(marPragmatica);
   }
+
+  public MarPragmatica actualizar(Long marPragmaticaId, MarPragmatica marPragmatica) {
+    MarPragmatica marPragmaticaActual = marPragmaticaRep.findById(marPragmaticaId).orElse(null);
+    marPragmaticaActual.setNombre(marPragmatica.getNombre());
+    marPragmaticaActual.setDescripcion(marPragmatica.getDescripcion());
+
+    final MarPragmatica marPragmaticaActualizada = marPragmaticaRep.save(marPragmaticaActual);
+    return marPragmaticaActualizada;
+  }
+
+  public Boolean eliminar(Long marPragmaticaId) {
+    MarPragmatica marPragmatica = marPragmaticaRep.findById(marPragmaticaId).orElse(null);
+
+    marPragmaticaRep.delete(marPragmatica);
+    return true;
+  }
 }

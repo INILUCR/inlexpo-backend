@@ -35,4 +35,20 @@ public class MarDiatecnicaService {
 
     return marDiatecnicaRep.save(marDiatecnica);
   }
+
+  public MarDiatecnica actualizar(Long marDiatecnicaId, MarDiatecnica marDiatecnica) {
+    MarDiatecnica marDiatecnicaActual = marDiatecnicaRep.findById(marDiatecnicaId).orElse(null);
+    marDiatecnicaActual.setNombre(marDiatecnica.getNombre());
+    marDiatecnicaActual.setDescripcion(marDiatecnica.getDescripcion());
+
+    final MarDiatecnica marDiatecnicaActualizada = marDiatecnicaRep.save(marDiatecnicaActual);
+    return marDiatecnicaActualizada;
+  }
+
+  public Boolean eliminar(Long marDiatecnicaId) {
+    MarDiatecnica marDiatecnica = marDiatecnicaRep.findById(marDiatecnicaId).orElse(null);
+
+    marDiatecnicaRep.delete(marDiatecnica);
+    return true;
+  }
 }

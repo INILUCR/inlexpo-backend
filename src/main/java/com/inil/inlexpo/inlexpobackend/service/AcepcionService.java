@@ -166,66 +166,93 @@ public class AcepcionService {
       if (datosAcepcion.getSubGramaticalId() > 0) {
         SubGramatical subGramatical = subGramaticalService.buscarPorId(datosAcepcion.getSubGramaticalId());
         acepcion.setSubGramatical(subGramatical);
+      } else {
+        acepcion.setSubGramatical(null);
       }
+    } else {
+      acepcion.setCatGramatical(null);
+      acepcion.setSubGramatical(null);
     }
 
     // Informacion
     if (datosAcepcion.getInfEtimologicaId() > 0) {
       InfEtimologica infEtimologica = infEtimologicaService.buscarPorId(datosAcepcion.getInfEtimologicaId());
       acepcion.setInfEtimologica(infEtimologica);
+    } else {
+      acepcion.setInfEtimologica(null);
     }
 
     if (datosAcepcion.getInfFoneticaId() > 0) {
       InfFonetica infFonetica = infFoneticaService.buscarPorId(datosAcepcion.getInfFoneticaId());
       acepcion.setInfFonetica(infFonetica);
+    } else {
+      acepcion.setInfFonetica(null);
     }
 
     if (datosAcepcion.getInfMorfologicaId() > 0) {
       InfMorfologica infMorfologica = infMorfologicaService.buscarPorId(datosAcepcion.getInfMorfologicaId());
       acepcion.setInfMorfologica(infMorfologica);
+    } else {
+      acepcion.setInfMorfologica(null);
     }
 
     if (datosAcepcion.getInfOrtograficaId() > 0) {
       InfOrtografica infOrtografica = infOrtograficaService.buscarPorId(datosAcepcion.getInfOrtograficaId());
       acepcion.setInfOrtografica(infOrtografica);
+    } else {
+      acepcion.setInfOrtografica(null);
     }
 
     // Marcacion
     if (datosAcepcion.getMarDiacronicaId() > 0) {
       MarDiacronica marDiacronica = marDiacronicaService.buscarPorId(datosAcepcion.getMarDiacronicaId());
       acepcion.setMarDiacronica(marDiacronica);
+    } else {
+      acepcion.setMarDiacronica(null);
     }
 
     if (datosAcepcion.getMarDiatecnicaId() > 0) {
       MarDiatecnica marDiatecnica = marDiatecnicaService.buscarPorId(datosAcepcion.getMarDiatecnicaId());
       acepcion.setMarDiatecnica(marDiatecnica);
+    } else {
+      acepcion.setMarDiatecnica(null);
     }
 
     if (datosAcepcion.getMarDiatopicaId() > 0) {
       MarDiatopica marDiatopica = marDiatopicaService.buscarPorId(datosAcepcion.getMarDiatopicaId());
       acepcion.setMarDiatopica(marDiatopica);
+    } else {
+      acepcion.setMarDiatopica(null);
     }
 
     if (datosAcepcion.getMarEstratificacionSocialId() > 0) {
       MarEstratificacionSocial marEstratificacionSocial = marEstratificacionSocialService
           .buscarPorId(datosAcepcion.getMarEstratificacionSocialId());
       acepcion.setMarEstratificacionSocial(marEstratificacionSocial);
+    } else {
+      acepcion.setMarEstratificacionSocial(null);
     }
 
     if (datosAcepcion.getMarFrecuenciaId() > 0) {
       MarFrecuencia marFrecuencia = marFrecuenciaService.buscarPorId(datosAcepcion.getMarFrecuenciaId());
       acepcion.setMarFrecuencia(marFrecuencia);
+    } else {
+      acepcion.setMarFrecuencia(null);
     }
 
     if (datosAcepcion.getMarPragmaticaId() > 0) {
       MarPragmatica marPragmatica = marPragmaticaService.buscarPorId(datosAcepcion.getMarPragmaticaId());
       acepcion.setMarPragmatica(marPragmatica);
+    } else {
+      acepcion.setMarPragmatica(null);
     }
 
     if (datosAcepcion.getMarValoracionSocialId() > 0) {
       MarValoracionSocial marValoracionSocial = marValoracionSocialService
           .buscarPorId(datosAcepcion.getMarValoracionSocialId());
       acepcion.setMarValoracionSocial(marValoracionSocial);
+    } else {
+      acepcion.setMarValoracionSocial(null);
     }
 
     return acepcionRep.save(acepcion);

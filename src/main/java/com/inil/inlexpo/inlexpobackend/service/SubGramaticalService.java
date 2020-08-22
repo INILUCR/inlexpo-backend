@@ -12,26 +12,43 @@ import org.springframework.stereotype.Service;
 public class SubGramaticalService {
 
   @Autowired
-  private SubGramaticalRepository subGrmRep;
+  private SubGramaticalRepository subGramaticalRep;
   @Autowired
-  private CatGramaticalService catGrmSrv;
+  private CatGramaticalService catGramaticalSrv;
 
   public SubGramatical buscarPorId(Long subGramaticalId) {
-    return subGrmRep.findById(subGramaticalId).orElse(null);
+    return subGramaticalRep.findById(subGramaticalId).orElse(null);
   }
 
   public List<SubGramatical> buscarPorCatGramatical(Long catGramaticalId) {
-		CatGramatical catGramatical = catGrmSrv.buscarPorId(catGramaticalId);
-		return subGrmRep.findByCatGramatical(catGramatical);
-	}
+    CatGramatical catGramatical = catGramaticalSrv.buscarPorId(catGramaticalId);
+    return subGramaticalRep.findByCatGramatical(catGramatical);
+  }
 
   public SubGramatical crear(Long catGramaticalId, SubGramatical subGramatical) {
     // Pedimos el diccionario que tenmos que asociar
-    CatGramatical catGramatical = catGrmSrv.buscarPorId(catGramaticalId);
+    CatGramatical catGramatical = catGramaticalSrv.buscarPorId(catGramaticalId);
 
     // Lo asociamos
     subGramatical.setCatGramatical(catGramatical);
 
-    return subGrmRep.save(subGramatical);
+    return subGramaticalRep.save(subGramatical);
+  }
+
+  public SubGramatical actualizar(Long subGramaticalId, SubGramatical subGramatical) {
+    SubGramatical subGramaticalActual = subGramaticalRep.findById(subGramaticalId).orElse(null);
+    subGramaticalActual.setNombre(subGramatical.getNombre());
+    subGramaticalActual.setDescripcion(subGramatical.getDescripcion());
+    subGramaticalActual.setAbreviatura(subGramatical.getAbreviatura());
+
+    final SubGramatical subGramaticalActualizada = subGramaticalRep.save(subGramaticalActual);
+    return subGramaticalActualizada;
+  }
+
+  public Boolean eliminar(Long subGramaticalId) {
+    SubGramatical subGramatical = subGramaticalRep.findById(subGramaticalId).orElse(null);
+
+    subGramaticalRep.delete(subGramatical);
+    return true;
   }
 }

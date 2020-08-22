@@ -35,4 +35,15 @@ public class MarValoracionSocialController {
       @Valid @RequestBody MarValoracionSocial marValoracionSocial) {
     return marValoracionSocialSrv.crear(diccionarioId, marValoracionSocial);
   }
+
+  @PutMapping("/marValoracionSocial/{marValoracionSocialId}")
+  public MarValoracionSocial actualizar(@PathVariable(value = "marValoracionSocialId") Long marValoracionSocialId,
+      @Valid @RequestBody MarValoracionSocial marValoracionSocial) {
+    return marValoracionSocialSrv.actualizar(marValoracionSocialId, marValoracionSocial);
+  }
+
+  @DeleteMapping("/marValoracionSocial/{marValoracionSocialId}")
+  public Boolean eliminar(@PathVariable(value = "marValoracionSocialId") Long marValoracionSocialId) {
+    return marValoracionSocialSrv.eliminar(marValoracionSocialId);
+  }
 }

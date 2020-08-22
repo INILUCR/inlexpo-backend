@@ -35,4 +35,20 @@ public class InfEtimologicaService {
 
     return infEtimologicaRep.save(infEtimologica);
   }
+
+  public InfEtimologica actualizar(Long infEtimologicaId, InfEtimologica infEtimologica) {
+    InfEtimologica infEtimologicaActual = infEtimologicaRep.findById(infEtimologicaId).orElse(null);
+    infEtimologicaActual.setNombre(infEtimologica.getNombre());
+    infEtimologicaActual.setDescripcion(infEtimologica.getDescripcion());
+
+    final InfEtimologica infEtimologicaActualizada = infEtimologicaRep.save(infEtimologicaActual);
+    return infEtimologicaActualizada;
+  }
+
+  public Boolean eliminar(Long infEtimologicaId) {
+    InfEtimologica infEtimologica = infEtimologicaRep.findById(infEtimologicaId).orElse(null);
+
+    infEtimologicaRep.delete(infEtimologica);
+    return true;
+  }
 }

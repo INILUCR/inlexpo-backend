@@ -36,4 +36,16 @@ public class MarEstratificacionSocialController {
       @Valid @RequestBody MarEstratificacionSocial marEstratificacionSocial) {
     return marEstratificacionSocialSrv.crear(diccionarioId, marEstratificacionSocial);
   }
+
+  @PutMapping("/marEstratificacionSocial/{marEstratificacionSocialId}")
+  public MarEstratificacionSocial actualizar(
+      @PathVariable(value = "marEstratificacionSocialId") Long marEstratificacionSocialId,
+      @Valid @RequestBody MarEstratificacionSocial marEstratificacionSocial) {
+    return marEstratificacionSocialSrv.actualizar(marEstratificacionSocialId, marEstratificacionSocial);
+  }
+
+  @DeleteMapping("/marEstratificacionSocial/{marEstratificacionSocialId}")
+  public Boolean eliminar(@PathVariable(value = "marEstratificacionSocialId") Long marEstratificacionSocialId) {
+    return marEstratificacionSocialSrv.eliminar(marEstratificacionSocialId);
+  }
 }

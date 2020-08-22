@@ -35,4 +35,15 @@ public class InfEtimologicaController {
       @Valid @RequestBody InfEtimologica infEtimologica) {
     return infEtimologicaSrv.crear(diccionarioId, infEtimologica);
   }
+
+  @PutMapping("/infEtimologica/{infEtimologicaId}")
+  public InfEtimologica actualizar(@PathVariable(value = "infEtimologicaId") Long infEtimologicaId,
+      @Valid @RequestBody InfEtimologica infEtimologica) {
+    return infEtimologicaSrv.actualizar(infEtimologicaId, infEtimologica);
+  }
+
+  @DeleteMapping("/infEtimologica/{infEtimologicaId}")
+  public Boolean eliminar(@PathVariable(value = "infEtimologicaId") Long infEtimologicaId) {
+    return infEtimologicaSrv.eliminar(infEtimologicaId);
+  }
 }

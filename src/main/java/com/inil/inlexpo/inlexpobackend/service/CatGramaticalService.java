@@ -12,18 +12,18 @@ import java.util.List;
 public class CatGramaticalService {
 
   @Autowired
-  private CatGramaticalRepository catGrmRep;
+  private CatGramaticalRepository catGramaticalRep;
   @Autowired
   private DiccionarioService diccionarioSrv;
 
   public CatGramatical buscarPorId(Long catGramaticalId) {
-    return catGrmRep.findById(catGramaticalId).orElse(null);
+    return catGramaticalRep.findById(catGramaticalId).orElse(null);
   }
 
   public List<CatGramatical> buscarPorDiccionario(Long diccionarioId) {
-		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
-		return catGrmRep.findByDiccionario(diccionario);
-	}
+    Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
+    return catGramaticalRep.findByDiccionario(diccionario);
+  }
 
   public CatGramatical crear(Long diccionarioId, CatGramatical catGramatical) {
     // Pedimos el diccionario que tenmos que asociar
@@ -32,28 +32,23 @@ public class CatGramaticalService {
     // Lo asociamos
     catGramatical.setDiccionario(diccionario);
 
-    return catGrmRep.save(catGramatical);
-  }
-}
-
-/* 
-@PersistenceContext
-EntityManager entityManager;
-
-public List<CatGramatical> buscarTodosConSubGrmAsociadas() {
-  List<CatGramatical> listaCatGrm = catGrmRep.findAll();
-
-  for(CatGramatical catGramatical : listaCatGrm) {
-    List<SubGramatical> listaSubGramatical = entityManager.createQuery(
-      "select sg " +
-      "from SubGramatical sg " +
-      "where sg.catGramatical.id = :catGramaticalId", SubGramatical.class)
-      .setParameter( "catGramaticalId", catGramatical.getId() )
-      .getResultList();
-    
-    catGramatical.setListaSubGramatical(listaSubGramatical);
+    return catGramaticalRep.save(catGramatical);
   }
 
-  return listaCatGrm;
+  public CatGramatical actualizar(Long catGramaticalId, CatGramatical catGramatical) {
+    CatGramatical catGramaticalActual = catGramaticalRep.findById(catGramaticalId).orElse(null);
+    catGramaticalActual.setNombre(catGramatical.getNombre());
+    catGramaticalActual.setDescripcion(catGramatical.getDescripcion());
+    catGramaticalActual.setAbreviatura(catGramatical.getAbreviatura());
+
+    final CatGramatical catGramaticalActualizada = catGramaticalRep.save(catGramaticalActual);
+    return catGramaticalActualizada;
+  }
+
+  public Boolean eliminar(Long catGramaticalId) {
+    CatGramatical catGramatical = catGramaticalRep.findById(catGramaticalId).orElse(null);
+
+    catGramaticalRep.delete(catGramatical);
+    return true;
+  }
 }
-*/

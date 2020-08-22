@@ -20,14 +20,9 @@ public class DiccionarioController {
   @Autowired
   private DiccionarioService diccionarioSrv;
 
-
-  @GetMapping("/diccionario")
-  public List<Diccionario> buscarTodos () {
-    return  diccionarioSrv.buscarTodos();
-  }
-
   @GetMapping("/diccionario/{diccionarioId}")
-  public Diccionario buscarPorId (@PathVariable(value = "diccionarioId") Long diccionarioId) throws ResourceNotFoundException {
+  public Diccionario buscarPorId(@PathVariable(value = "diccionarioId") Long diccionarioId)
+      throws ResourceNotFoundException {
     Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
     if (diccionario == null) {
       String message = DICCIONARIO_NO_ENCONTRADO + diccionarioId;
@@ -36,8 +31,19 @@ public class DiccionarioController {
     return diccionario;
   }
 
+  @GetMapping("/diccionario")
+  public List<Diccionario> buscarTodos() {
+    return diccionarioSrv.buscarTodos();
+  }
+
   @PostMapping("/diccionario")
-  public Diccionario crear (@Valid @RequestBody Diccionario diccionario) {
+  public Diccionario crear(@Valid @RequestBody Diccionario diccionario) {
     return diccionarioSrv.crear(diccionario);
+  }
+
+  @PutMapping("/diccionario/{diccionarioId}")
+  public Diccionario actualizar(@PathVariable(value = "diccionarioId") Long diccionarioId,
+      @Valid @RequestBody Diccionario diccionario) {
+    return diccionarioSrv.actualizar(diccionarioId, diccionario);
   }
 }

@@ -35,4 +35,24 @@ public class MarEstratificacionSocialService {
 
     return marEstratificacionSocialRep.save(marEstratificacionSocial);
   }
+
+  public MarEstratificacionSocial actualizar(Long marEstratificacionSocialId,
+      MarEstratificacionSocial marEstratificacionSocial) {
+    MarEstratificacionSocial marEstratificacionSocialActual = marEstratificacionSocialRep
+        .findById(marEstratificacionSocialId).orElse(null);
+    marEstratificacionSocialActual.setNombre(marEstratificacionSocial.getNombre());
+    marEstratificacionSocialActual.setDescripcion(marEstratificacionSocial.getDescripcion());
+
+    final MarEstratificacionSocial marEstratificacionSocialActualizada = marEstratificacionSocialRep
+        .save(marEstratificacionSocialActual);
+    return marEstratificacionSocialActualizada;
+  }
+
+  public Boolean eliminar(Long marEstratificacionSocialId) {
+    MarEstratificacionSocial marEstratificacionSocial = marEstratificacionSocialRep.findById(marEstratificacionSocialId)
+        .orElse(null);
+
+    marEstratificacionSocialRep.delete(marEstratificacionSocial);
+    return true;
+  }
 }

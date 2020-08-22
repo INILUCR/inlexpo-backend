@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InfOrtograficaService {
-  
+
   @Autowired
   private InfOrtograficaRepository infOrtograficaRep;
   @Autowired
@@ -22,9 +22,9 @@ public class InfOrtograficaService {
   }
 
   public List<InfOrtografica> buscarPorDiccionario(Long diccionarioId) {
-		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
-		return infOrtograficaRep.findByDiccionario(diccionario);
-	}
+    Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
+    return infOrtograficaRep.findByDiccionario(diccionario);
+  }
 
   public InfOrtografica crear(Long diccionarioId, InfOrtografica infOrtografica) {
     // Pedimos el diccionario que tenmos que asociar
@@ -34,5 +34,21 @@ public class InfOrtograficaService {
     infOrtografica.setDiccionario(diccionario);
 
     return infOrtograficaRep.save(infOrtografica);
+  }
+
+  public InfOrtografica actualizar(Long infOrtograficaId, InfOrtografica infOrtografica) {
+    InfOrtografica infOrtograficaActual = infOrtograficaRep.findById(infOrtograficaId).orElse(null);
+    infOrtograficaActual.setNombre(infOrtografica.getNombre());
+    infOrtograficaActual.setDescripcion(infOrtografica.getDescripcion());
+
+    final InfOrtografica infOrtograficaActualizada = infOrtograficaRep.save(infOrtograficaActual);
+    return infOrtograficaActualizada;
+  }
+
+  public Boolean eliminar(Long infOrtograficaId) {
+    InfOrtografica infOrtografica = infOrtograficaRep.findById(infOrtograficaId).orElse(null);
+
+    infOrtograficaRep.delete(infOrtografica);
+    return true;
   }
 }

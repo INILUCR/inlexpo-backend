@@ -35,4 +35,15 @@ public class InfFoneticaController {
       @Valid @RequestBody InfFonetica infFonetica) {
     return infFoneticaSrv.crear(diccionarioId, infFonetica);
   }
+
+  @PutMapping("/infFonetica/{infFoneticaId}")
+  public InfFonetica actualizar(@PathVariable(value = "infFoneticaId") Long infFoneticaId,
+      @Valid @RequestBody InfFonetica infFonetica) {
+    return infFoneticaSrv.actualizar(infFoneticaId, infFonetica);
+  }
+
+  @DeleteMapping("/infFonetica/{infFoneticaId}")
+  public Boolean eliminar(@PathVariable(value = "infFoneticaId") Long infFoneticaId) {
+    return infFoneticaSrv.eliminar(infFoneticaId);
+  }
 }

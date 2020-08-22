@@ -35,4 +35,15 @@ public class InfMorfologicaController {
       @Valid @RequestBody InfMorfologica infMorfologica) {
     return infMorfologicaSrv.crear(diccionarioId, infMorfologica);
   }
+
+  @PutMapping("/infMorfologica/{infMorfologicaId}")
+  public InfMorfologica actualizar(@PathVariable(value = "infMorfologicaId") Long infMorfologicaId,
+      @Valid @RequestBody InfMorfologica infMorfologica) {
+    return infMorfologicaSrv.actualizar(infMorfologicaId, infMorfologica);
+  }
+
+  @DeleteMapping("/infMorfologica/{infMorfologicaId}")
+  public Boolean eliminar(@PathVariable(value = "infMorfologicaId") Long infMorfologicaId) {
+    return infMorfologicaSrv.eliminar(infMorfologicaId);
+  }
 }

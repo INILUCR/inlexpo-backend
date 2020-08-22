@@ -35,4 +35,15 @@ public class MarDiacronicaController {
       @Valid @RequestBody MarDiacronica marDiacronica) {
     return marDiacronicaSrv.crear(diccionarioId, marDiacronica);
   }
+
+  @PutMapping("/marDiacronica/{marDiacronicaId}")
+  public MarDiacronica actualizar(@PathVariable(value = "marDiacronicaId") Long marDiacronicaId,
+      @Valid @RequestBody MarDiacronica marDiacronica) {
+    return marDiacronicaSrv.actualizar(marDiacronicaId, marDiacronica);
+  }
+
+  @DeleteMapping("/marDiacronica/{marDiacronicaId}")
+  public Boolean eliminar(@PathVariable(value = "marDiacronicaId") Long marDiacronicaId) {
+    return marDiacronicaSrv.eliminar(marDiacronicaId);
+  }
 }

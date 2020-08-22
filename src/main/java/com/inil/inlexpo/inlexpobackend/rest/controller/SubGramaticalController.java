@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 
 public class SubGramaticalController {
   @Autowired
-  private SubGramaticalService subGrmSrv;
+  private SubGramaticalService subGramaticalSrv;
 
   @GetMapping("/catGramatical/{catGramaticalId}/subGramatical")
-  public List<SubGramatical> buscarPorCatGramatical(@PathVariable(value = "catGramaticalId") Long catGramaticalId) 
-    throws ResourceNotFoundException {
-    
-    List<SubGramatical> listaSubGramaticales = subGrmSrv.buscarPorCatGramatical(catGramaticalId);
+  public List<SubGramatical> buscarPorCatGramatical(@PathVariable(value = "catGramaticalId") Long catGramaticalId)
+      throws ResourceNotFoundException {
+
+    List<SubGramatical> listaSubGramaticales = subGramaticalSrv.buscarPorCatGramatical(catGramaticalId);
     if (listaSubGramaticales == null) {
       throw new ResourceNotFoundException("");
     }
@@ -31,8 +31,19 @@ public class SubGramaticalController {
   }
 
   @PostMapping("/catGramatical/{catGramaticalId}/subGramatical")
-  public SubGramatical crear (@PathVariable(value = "catGramaticalId") Long catGramaticalId,
-                              @Valid @RequestBody SubGramatical subGramatical) {
-    return subGrmSrv.crear(catGramaticalId, subGramatical);
+  public SubGramatical crear(@PathVariable(value = "catGramaticalId") Long catGramaticalId,
+      @Valid @RequestBody SubGramatical subGramatical) {
+    return subGramaticalSrv.crear(catGramaticalId, subGramatical);
+  }
+
+  @PutMapping("/subGramatical/{subGramaticalId}")
+  public SubGramatical actualizar(@PathVariable(value = "subGramaticalId") Long subGramaticalId,
+      @Valid @RequestBody SubGramatical subGramatical) {
+    return subGramaticalSrv.actualizar(subGramaticalId, subGramatical);
+  }
+
+  @DeleteMapping("/subGramatical/{subGramaticalId}")
+  public Boolean eliminar(@PathVariable(value = "subGramaticalId") Long subGramaticalId) {
+    return subGramaticalSrv.eliminar(subGramaticalId);
   }
 }

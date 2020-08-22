@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MarDiatopicaService {
-  
+
   @Autowired
   private MarDiatopicaRepository marDiatopicaRep;
   @Autowired
@@ -22,9 +22,9 @@ public class MarDiatopicaService {
   }
 
   public List<MarDiatopica> buscarPorDiccionario(Long diccionarioId) {
-		Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
-		return marDiatopicaRep.findByDiccionario(diccionario);
-	}
+    Diccionario diccionario = diccionarioSrv.buscarPorId(diccionarioId);
+    return marDiatopicaRep.findByDiccionario(diccionario);
+  }
 
   public MarDiatopica crear(Long diccionarioId, MarDiatopica marDiatopica) {
     // Pedimos el diccionario que tenmos que asociar
@@ -34,5 +34,21 @@ public class MarDiatopicaService {
     marDiatopica.setDiccionario(diccionario);
 
     return marDiatopicaRep.save(marDiatopica);
+  }
+
+  public MarDiatopica actualizar(Long marDiatopicaId, MarDiatopica marDiatopica) {
+    MarDiatopica marDiatopicaActual = marDiatopicaRep.findById(marDiatopicaId).orElse(null);
+    marDiatopicaActual.setNombre(marDiatopica.getNombre());
+    marDiatopicaActual.setDescripcion(marDiatopica.getDescripcion());
+
+    final MarDiatopica marDiatopicaActualizada = marDiatopicaRep.save(marDiatopicaActual);
+    return marDiatopicaActualizada;
+  }
+
+  public Boolean eliminar(Long marDiatopicaId) {
+    MarDiatopica marDiatopica = marDiatopicaRep.findById(marDiatopicaId).orElse(null);
+
+    marDiatopicaRep.delete(marDiatopica);
+    return true;
   }
 }
